@@ -25,7 +25,12 @@ public:
 
     template <typename Stream, typename Operation>
     inline void SerializationOp(Stream& s, Operation ser_action, int nType, int nVersion) {
+#if defined(WORDS_BIGENDIAN)
+        READWRITE(hash);
+        READWRITE(n);
+#else // Can take shortcut for little-endian
         READWRITE(FLATDATA(*this));
+#endif
     }
 
     void SetNull() { hash = 0; n = (uint32_t) -1; }
