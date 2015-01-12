@@ -24,9 +24,9 @@ struct SeedSpec6 {
 
 #include "chainparamsseeds.h"
 
-static const uint256 MAINNET_GENESIS("0x");
-static const uint256 TESTNET_GENESIS("0x");
-static const uint256 REGNET_GENESIS("0x");
+static const uint256 MAINNET_GENESIS("0x00009add4210a4be97ebf6f1277bf9b43fe91dbd34b31cc87b34ca26c78245aa");
+static const uint256 TESTNET_GENESIS("0x000082c0b945dabb8ee379b40d6ba51fb7ed7200a1128a81227d530cafff1a8c");
+static const uint256 REGNET_GENESIS("0x02aeaf70c93a635897ad9e3233f7f3a8c74924155a10cde76133f50ac1c95cb2");
 
 
 /**
@@ -156,38 +156,31 @@ public:
         pchMessageStart[3] = 0xd9;
         vAlertPubKey = ParseHex("04fc9702847840aaf195de8442ebecedf5b095cdbb9bc716bda9110971b28a49e0ead8564ff0db22209e0374782c093bb899692d524e9d6a6956e7c5ecbcd68284");
         nDefaultPort = 8333;
-        bnProofOfWorkLimit = ~uint256(0) >> 32;
+        bnProofOfWorkLimit = ~uint256(0) >> 16;
         nSubsidyHalvingInterval = 210000;
         nMinerThreads = 0;
         nTargetTimespan = 14 * 24 * 60 * 60; // two weeks
-        nTargetSpacing = 10 * 60;
+        nTargetSpacing = 1 * 60;
 
-        /**
-         * Build the genesis block. Note that the output of the genesis coinbase cannot
-         * be spent as it did not originally exist in the database.
-         * 
-         * CBlock(hash=000000000019d6, ver=1, hashPrevBlock=00000000000000, hashMerkleRoot=4a5e1e, nTime=1231006505, nBits=1d00ffff, nNonce=2083236893, vtx=1)
-         *   CTransaction(hash=4a5e1e, ver=1, vin.size=1, vout.size=1, nLockTime=0)
-         *     CTxIn(COutPoint(000000, -1), coinbase 04ffff001d0104455468652054696d65732030332f4a616e2f32303039204368616e63656c6c6f72206f6e206272696e6b206f66207365636f6e64206261696c6f757420666f722062616e6b73)
-         *     CTxOut(nValue=50.00000000, scriptPubKey=0x5F1DF16B2B704C8A578D0B)
-         *   vMerkleTree: 4a5e1e
-         */
-        const char* pszTimestamp = "The Times 03/Jan/2009 Chancellor on brink of second bailout for banks";
+        const char* pszTimestamp = "or on brink of second bailout for banks";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
-        txNew.vout[0].nValue = 50 * COIN;
+        txNew.vout[0].nValue = 1 * COIN;
         txNew.vout[0].scriptPubKey = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime    = 1231006505;
-        genesis.nBits    = 0x1d00ffff;
-        genesis.nNonce   = 2083236893;
+        genesis.nBits    = bnProofOfWorkLimit.GetCompact();
 
+        genesis.nTime = 1421045846;
+        genesis.nNonce = 198302;
+        assert(genesis.hashMerkleRoot == uint256("0x7cab3d03f74d2fdd1c457135b46d8e6904cb353bc4f9595a34e9b8eb8a1c771e"));
+        //genesis hash: 0x00009add4210a4be97ebf6f1277bf9b43fe91dbd34b31cc87b34ca26c78245aa
 
+        //MineNewGenesisBlock();
         hashGenesisBlock = genesis.GetHash();
 
         assert(hashGenesisBlock == MAINNET_GENESIS);
@@ -239,11 +232,14 @@ public:
         nDefaultPort = 18333;
         nMinerThreads = 0;
         nTargetTimespan = 14 * 24 * 60 * 60; //! two weeks
-        nTargetSpacing = 10 * 60;
+        nTargetSpacing = 1 * 60;
 
-        //! Modify the testnet genesis block so the timestamp is valid for a later start.
-        genesis.nTime = 1296688602;
-        genesis.nNonce = 414098458;
+        genesis.nTime = 1421046107;
+        genesis.nNonce = 130053;
+        assert(genesis.hashMerkleRoot == uint256("0x7cab3d03f74d2fdd1c457135b46d8e6904cb353bc4f9595a34e9b8eb8a1c771e"));
+        //genesis hash: 0x000082c0b945dabb8ee379b40d6ba51fb7ed7200a1128a81227d530cafff1a8c
+
+        //MineNewGenesisBlock();
         hashGenesisBlock = genesis.GetHash();
         assert(hashGenesisBlock == TESTNET_GENESIS);
 
@@ -294,10 +290,14 @@ public:
         nTargetTimespan = 14 * 24 * 60 * 60; //! two weeks
         nTargetSpacing = 10 * 60;
         bnProofOfWorkLimit = ~uint256(0) >> 1;
-        genesis.nTime = 1296688602;
-        genesis.nBits = 0x207fffff;
-        genesis.nNonce = 2;
+        genesis.nBits    = bnProofOfWorkLimit.GetCompact();
 
+        genesis.nTime = 1421046242;
+        genesis.nNonce = 0;
+        assert(genesis.hashMerkleRoot == uint256("0x7cab3d03f74d2fdd1c457135b46d8e6904cb353bc4f9595a34e9b8eb8a1c771e"));
+        //genesis hash: 0x02aeaf70c93a635897ad9e3233f7f3a8c74924155a10cde76133f50ac1c95cb2
+
+        //MineNewGenesisBlock();
         hashGenesisBlock = genesis.GetHash();
         nDefaultPort = 18444;
 
