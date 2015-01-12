@@ -12,6 +12,7 @@
 #include <assert.h>
 
 #include <boost/assign/list_of.hpp>
+#include <cstdio>
 
 using namespace std;
 using namespace boost::assign;
@@ -71,7 +72,7 @@ static const Checkpoints::CCheckpointData data = {
 
 static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
         boost::assign::map_list_of
-        ( 0, TESTNET_GENESIS
+        ( 0, TESTNET_GENESIS)
         ;
 static const Checkpoints::CCheckpointData dataTestnet = {
         &mapCheckpointsTestnet,
@@ -118,20 +119,22 @@ void  CChainParams::MineNewGenesisBlock()
     printf("assert(genesis.hashMerkleRoot == uint256(\"0x%s\"));\n",genesis.hashMerkleRoot.ToString().c_str());
     printf("//genesis hash: 0x%s\n", genesis.GetHash().ToString().c_str());
     exit(1);
+
+
 }
 
 //need a different implementation here that doesn't use error() and that doesn't use Params() since it isn't yet usable
 bool CChainParams::CheckProofOfWork(uint256 hash, unsigned int nBits)
 {
-    CBigNum bnTarget;
-    bnTarget.SetCompact(nBits);
+    bool fNegative;
+    bool fOverflow;
+    uint256 bnTarget;
 
-    // Check range
-    if (bnTarget <= 0 || bnTarget > this->ProofOfWorkLimit())
-        return false; //error("CheckProofOfWork() : nBits below minimum work");
+    bnTarget.SetCompact(nBits, &fNegative, &fOverflow);
+
     // Check proof of work matches claimed amount
-    if (hash > bnTarget.getuint256())
-        return false; //error("CheckProofOfWork() : hash doesn't match nBits");
+    if (hash > bnTarget)
+        return false;
 
     return true;
 }
@@ -294,7 +297,7 @@ public:
         genesis.nTime = 1296688602;
         genesis.nBits = 0x207fffff;
         genesis.nNonce = 2;
-        
+
         hashGenesisBlock = genesis.GetHash();
         nDefaultPort = 18444;
 
