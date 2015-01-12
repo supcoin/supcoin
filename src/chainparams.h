@@ -11,6 +11,7 @@
 #include "primitives/block.h"
 #include "protocol.h"
 #include "uint256.h"
+#include "core.h" 
 
 #include <vector>
 
@@ -20,6 +21,7 @@ struct CDNSSeedData {
     std::string name, host;
     CDNSSeedData(const std::string &strName, const std::string &strHost) : name(strName), host(strHost) {}
 };
+
 
 /**
  * CChainParams defines various tweakable parameters of a given instance of the
@@ -80,6 +82,8 @@ protected:
 
     uint256 hashGenesisBlock;
     MessageStartChars pchMessageStart;
+    void MineNewGenesisBlock();
+    bool CheckProofOfWork(uint256 hash, unsigned int nBits);
     //! Raw pub key bytes for the broadcast alert signing key.
     std::vector<unsigned char> vAlertPubKey;
     int nDefaultPort;
