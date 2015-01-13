@@ -47,10 +47,6 @@ public:
     int GetDefaultPort() const { return nDefaultPort; }
     const uint256& ProofOfWorkLimit() const { return bnProofOfWorkLimit; }
     int SubsidyHalvingInterval() const { return nSubsidyHalvingInterval; }
-    /** Used to check majorities for block version upgrade */
-    int EnforceBlockUpgradeMajority() const { return nEnforceBlockUpgradeMajority; }
-    int RejectBlockOutdatedMajority() const { return nRejectBlockOutdatedMajority; }
-    int ToCheckBlockUpgradeMajority() const { return nToCheckBlockUpgradeMajority; }
 
     /** Used if GenerateBitcoins is called with a negative number of threads */
     int DefaultMinerThreads() const { return nMinerThreads; }
@@ -89,9 +85,6 @@ protected:
     int nDefaultPort;
     uint256 bnProofOfWorkLimit;
     int nSubsidyHalvingInterval;
-    int nEnforceBlockUpgradeMajority;
-    int nRejectBlockOutdatedMajority;
-    int nToCheckBlockUpgradeMajority;
     int64_t nTargetTimespan;
     int64_t nTargetSpacing;
     int nMinerThreads;
@@ -121,9 +114,6 @@ class CModifiableParams {
 public:
     //! Published setters to allow changing values in unit test cases
     virtual void setSubsidyHalvingInterval(int anSubsidyHalvingInterval) =0;
-    virtual void setEnforceBlockUpgradeMajority(int anEnforceBlockUpgradeMajority)=0;
-    virtual void setRejectBlockOutdatedMajority(int anRejectBlockOutdatedMajority)=0;
-    virtual void setToCheckBlockUpgradeMajority(int anToCheckBlockUpgradeMajority)=0;
     virtual void setDefaultCheckMemPool(bool aDefaultCheckMemPool)=0;
     virtual void setAllowMinDifficultyBlocks(bool aAllowMinDifficultyBlocks)=0;
     virtual void setSkipProofOfWorkCheck(bool aSkipProofOfWorkCheck)=0;
