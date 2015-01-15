@@ -12,6 +12,7 @@
 #include <vector>
 #include <stdint.h>
 #include <string>
+#include "script.h"
 
 class CPubKey;
 class CScript;
@@ -68,7 +69,11 @@ enum
     // discouraged NOPs fails the script. This verification flag will never be
     // a mandatory flag applied to scripts in a block. NOPs that are not
     // executed, e.g.  within an unexecuted IF ENDIF block, are *not* rejected.
-    SCRIPT_VERIFY_DISCOURAGE_UPGRADABLE_NOPS  = (1U << 7)
+    SCRIPT_VERIFY_DISCOURAGE_UPGRADABLE_NOPS  = (1U << 7),
+    // Verify CHECKLOCKTIMEVERIFY (BIP65)
+    //
+    SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY = (1U << 8)
+
 
 };
 
@@ -81,7 +86,10 @@ public:
     {
         return false;
     }
-
+    virtual bool CheckLockTime(const CScriptNum& nLockTime) const
+    {
+         return false;
+    }
     virtual ~BaseSignatureChecker() {}
 };
 
@@ -97,6 +105,7 @@ protected:
 public:
     TransactionSignatureChecker(const CTransaction* txToIn, unsigned int nInIn) : txTo(txToIn), nIn(nInIn) {}
     bool CheckSig(const std::vector<unsigned char>& scriptSig, const std::vector<unsigned char>& vchPubKey, const CScript& scriptCode) const;
+    bool CheckLockTime(const CScriptNum& nLockTime) const;
 };
 
 class MutableTransactionSignatureChecker : public TransactionSignatureChecker
