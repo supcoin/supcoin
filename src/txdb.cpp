@@ -18,11 +18,13 @@ static const char DB_COINS = 'c';
 static const char DB_BLOCK_FILES = 'f';
 static const char DB_TXINDEX = 't';
 static const char DB_BLOCK_INDEX = 'b';
+static const char DB_ADDRINDEX = 'a';
 
 static const char DB_BEST_BLOCK = 'B';
 static const char DB_FLAG = 'F';
 static const char DB_REINDEX_FLAG = 'R';
 static const char DB_LAST_BLOCK = 'l';
+static const char DB_SALT = 'S';
 
 
 void static BatchWriteCoins(CLevelDBBatch &batch, const uint256 &hash, const CCoins &coins) {
@@ -75,19 +77,19 @@ bool CCoinsViewDB::BatchWrite(CCoinsMap &mapCoins, const uint256 &hashBlock) {
 }
 
 CBlockTreeDB::CBlockTreeDB(size_t nCacheSize, bool fMemory, bool fWipe) : CLevelDBWrapper(GetDataDir() / "blocks" / "index", nCacheSize, fMemory, fWipe) {
-    if (!Read('S', salt)) {
+    if (!Read(DB_SALT, salt)) {
         salt = GetRandHash();
-        Write('S', salt);
+        Write(DB_SALT, salt);
     }
 }
 
 bool CBlockTreeDB::WriteBlockIndex(const CDiskBlockIndex& blockindex)
 {
-    return Write(make_pair('b', blockindex.GetBlockHash()), blockindex);
+    return Write(make_pair(DB_BLOCK_INDEX, blockindex.GetBlockHash()), blockindex);
 }
 
 bool CBlockTreeDB::WriteBlockFileInfo(int nFile, const CBlockFileInfo &info) {
-    return Write(make_pair('f', nFile), info);
+    return Write(make_pair(DB_BLOCK_FILES, nFile), info);
 }
 
 bool CBlockTreeDB::ReadBlockFileInfo(int nFile, CBlockFileInfo &info) {
@@ -95,7 +97,7 @@ bool CBlockTreeDB::ReadBlockFileInfo(int nFile, CBlockFileInfo &info) {
 }
 
 bool CBlockTreeDB::WriteLastBlockFile(int nFile) {
-    return Write('l', nFile);
+    return Write(DB_LAST_BLOCK, nFile);
 }
 
 bool CBlockTreeDB::WriteReindexing(bool fReindexing) {
@@ -188,7 +190,7 @@ bool CBlockTreeDB::ReadAddrIndex(uint160 addrid, std::vector<CExtDiskTxPos> &lis
         lookupid = ss.GetHash().GetLow64();
     }
     CDataStream ssKeySet(SER_DISK, CLIENT_VERSION);
-    ssKeySet << make_pair('a', lookupid);
+    ssKeySet << make_pair(DB_ADDRINDEX, lookupid);
     pcursor->Seek(ssKeySet.str());
 
     while (pcursor->Valid()) {
@@ -200,7 +202,7 @@ bool CBlockTreeDB::ReadAddrIndex(uint160 addrid, std::vector<CExtDiskTxPos> &lis
         } catch(std::exception &e) {
             break;
         }
-        if (key.first.first == 'a' && key.first.second == lookupid) {
+        if (key.first.first == DB_ADDRINDEX && key.first.second == lookupid) {
             list.push_back(key.second);
         } else {
             break;
@@ -217,7 +219,7 @@ bool CBlockTreeDB::AddAddrIndex(const std::vector<std::pair<uint160, CExtDiskTxP
         CHashWriter ss(SER_GETHASH, 0);
         ss << salt;
         ss << it->first;
-        batch.Write(make_pair(make_pair('a', ss.GetHash().GetLow64()), it->second), FLATDATA(foo));
+        batch.Write(make_pair(make_pair(DB_ADDRINDEX, ss.GetHash().GetLow64()), it->second), FLATDATA(foo));
     }
     return WriteBatch(batch, true);
 }
