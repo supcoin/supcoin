@@ -342,7 +342,7 @@ bool EvalScript(vector<vector<unsigned char> >& stack, const CScript& script, un
                     if (!(flags & SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY)) {
                         // not enabled; treat as a NOP2 (note: should always be enabled)
                         if (flags & SCRIPT_VERIFY_DISCOURAGE_UPGRADABLE_NOPS) {
-                            return set_error(serror, SCRIPT_ERR_DISCOURAGE_UPGRADABLE_NOPS);
+                      //      return set_error(serror, SCRIPT_ERR_DISCOURAGE_UPGRADABLE_NOPS);
                         }
                         break;
                     }
@@ -1098,7 +1098,7 @@ uint256 SignatureHash(const CScript& scriptCode, const CTransaction& txTo, unsig
     return ss.GetHash();
 }
 
-bool SignatureChecker::CheckLockTime(const CScriptNum& nLockTime) const
+bool TransactionSignatureChecker::CheckLockTime(const CScriptNum& nLockTime) const
 {
     // There are two times of nLockTime: lock-by-blockheight
     // and lock-by-blocktime, distinguished by whether
@@ -1108,14 +1108,14 @@ bool SignatureChecker::CheckLockTime(const CScriptNum& nLockTime) const
     // unless the type of nLockTime being tested is the same as
     // the nLockTime in the transaction.
     if (!(
-        (txTo.nLockTime <  LOCKTIME_THRESHOLD && nLockTime <  LOCKTIME_THRESHOLD) ||
-        (txTo.nLockTime >= LOCKTIME_THRESHOLD && nLockTime >= LOCKTIME_THRESHOLD)
+        (txTo->nLockTime <  LOCKTIME_THRESHOLD && nLockTime <  LOCKTIME_THRESHOLD) ||
+        (txTo->nLockTime >= LOCKTIME_THRESHOLD && nLockTime >= LOCKTIME_THRESHOLD)
     ))
         return false;
 
     // Now that we know we're comparing apples-to-apples, the
     // comparison is a simple numeric one.
-    if (nLockTime > (int64_t)txTo.nLockTime)
+    if (nLockTime > (int64_t)txTo->nLockTime)
         return false;
 
     // Finally the nLockTime feature can be disabled and thus
@@ -1128,7 +1128,7 @@ bool SignatureChecker::CheckLockTime(const CScriptNum& nLockTime) const
     // prevent this condition. Alternatively we could test all
     // inputs, but testing just this input minimizes the data
     // required to prove correct CHECKLOCKTIMEVERIFY execution.
-    if (txTo.vin[nIn].IsFinal())
+    if (txTo->vin[nIn].IsFinal())
         return false;
 
     return true;
