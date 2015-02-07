@@ -1869,7 +1869,7 @@ Address: %4
         <translation>비트코인 코어</translation>
     </message>
     <message>
-        <source>The Supcoin Core developers</source>
+        <source>The Bitcoin Core developers</source>
         <translation>비트코인코어 개발자들</translation>
     </message>
     <message>

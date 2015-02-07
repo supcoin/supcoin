@@ -2289,7 +2289,7 @@ Address: %4
         <translation>Supcoin Core</translation>
     </message>
     <message>
-        <source>The Supcoin Core developers</source>
+        <source>The Bitcoin Core developers</source>
         <translation>Розробники Supcoin Core</translation>
     </message>
     <message>
@@ -3131,7 +3131,7 @@ rpcpassword=%s
         <translation>Підключитись через SOCKS5-проксі</translation>
     </message>
     <message>
-        <source>Copyright (C) 2009-%i The Supcoin Core Developers</source>
+        <source>Copyright (C) 2009-%i The Bitcoin Core developers</source>
         <translation>(C) 2009-%i Розробники Supcoin Core</translation>
     </message>
     <message>

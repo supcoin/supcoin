@@ -1301,7 +1301,7 @@
         <translation>جوهر البيت كوين</translation>
     </message>
     <message>
-        <source>The Supcoin Core developers</source>
+        <source>The Bitcoin Core developers</source>
         <translation>مطوري جوهر البيت كوين</translation>
     </message>
     <message>

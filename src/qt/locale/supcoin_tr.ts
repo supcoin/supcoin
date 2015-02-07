@@ -2289,7 +2289,7 @@ Adres: %4
         <translation>Supcoin Çekirdeği</translation>
     </message>
     <message>
-        <source>The Supcoin Core developers</source>
+        <source>The Bitcoin Core developers</source>
         <translation>Supcoin Çekirdeği geliştiricileri</translation>
     </message>
     <message>
@@ -3131,7 +3131,7 @@ mesela: alertnotify=echo %%s | mail -s "Supcoin Alert" admin@foo.com
         <translation>SOCKS5 vekil sunucusu vasıtasıyla bağlan</translation>
     </message>
     <message>
-        <source>Copyright (C) 2009-%i The Supcoin Core Developers</source>
+        <source>Copyright (C) 2009-%i The Bitcoin Core developers</source>
         <translation>Telif hakkı 2009-%i Supcoin Çekirdeği Geliştiricileri</translation>
     </message>
     <message>

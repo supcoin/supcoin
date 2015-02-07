@@ -2145,7 +2145,7 @@ Adresa: %4
         <translation>Supcoin Core</translation>
     </message>
     <message>
-        <source>The Supcoin Core developers</source>
+        <source>The Bitcoin Core developers</source>
         <translation>Vývojáři Supcoin Core</translation>
     </message>
     <message>
@@ -2943,7 +2943,7 @@ například: alertnotify=echo %%s | mail -s "Supcoin Alert" admin@foo.com
         <translation>Připojit se přes SOCKS5 proxy</translation>
     </message>
     <message>
-        <source>Copyright (C) 2009-%i The Supcoin Core Developers</source>
+        <source>Copyright (C) 2009-%i The Bitcoin Core developers</source>
         <translation>Copyright (C) 2009-%i Vývojáři Supcoin Core</translation>
     </message>
     <message>

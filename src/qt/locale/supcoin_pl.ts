@@ -1861,7 +1861,7 @@ Adres: %4
         <translation>Rdzeń BitCoin</translation>
     </message>
     <message>
-        <source>The Supcoin Core developers</source>
+        <source>The Bitcoin Core developers</source>
         <translation>Deweloperzy Supcoin Core</translation>
     </message>
     <message>

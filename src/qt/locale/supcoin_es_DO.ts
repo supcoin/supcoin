@@ -1777,7 +1777,7 @@ Dirección: %4
         <translation>Núcleo de Supcoin</translation>
     </message>
     <message>
-        <source>The Supcoin Core developers</source>
+        <source>The Bitcoin Core developers</source>
         <translation>Los desarrolladores del Núcleo de Supcoin</translation>
     </message>
     <message>

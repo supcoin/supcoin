@@ -1829,7 +1829,7 @@ Alamat: %4
         <translation>Supcoin Core</translation>
     </message>
     <message>
-        <source>The Supcoin Core developers</source>
+        <source>The Bitcoin Core developers</source>
         <translation>Pembangun Supcoin Core</translation>
     </message>
     <message>

@@ -833,7 +833,7 @@
         <translation>nucleo Supcoin</translation>
     </message>
     <message>
-        <source>The Supcoin Core developers</source>
+        <source>The Bitcoin Core developers</source>
         <translation>El nucleo de Supcoin de desarrolladores</translation>
     </message>
     </context>

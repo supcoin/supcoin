@@ -2953,7 +2953,7 @@ Address: %4
     </message>
     <message>
         <location line="+2"/>
-        <source>The Supcoin Core developers</source>
+        <source>The Bitcoin Core developers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4020,7 +4020,7 @@ for example: alertnotify=echo %%s | mail -s &quot;Supcoin Alert&quot; admin@foo.
     </message>
     <message>
         <location line="+3"/>
-        <source>Copyright (C) 2009-%i The Supcoin Core Developers</source>
+        <source>Copyright (C) 2009-%i The Bitcoin Core developers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

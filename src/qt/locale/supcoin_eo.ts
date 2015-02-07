@@ -1749,7 +1749,7 @@ Adreso: %4
         <translation>Kerno de Bitmono</translation>
     </message>
     <message>
-        <source>The Supcoin Core developers</source>
+        <source>The Bitcoin Core developers</source>
         <translation>La programistoj de Bitmona Kerno</translation>
     </message>
     <message>

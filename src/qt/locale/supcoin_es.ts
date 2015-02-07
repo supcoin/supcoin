@@ -2265,7 +2265,7 @@ Dirección: %4
         <translation>Supcoin Core</translation>
     </message>
     <message>
-        <source>The Supcoin Core developers</source>
+        <source>The Bitcoin Core developers</source>
         <translation>Los desarrolladores de Supcoin Core</translation>
     </message>
     <message>
@@ -3099,8 +3099,8 @@ Por ejemplo: alertnotify=echo %%s | mail -s "Supcoin Alert" admin@foo.com
         <translation>Conectar usando SOCKS5 proxy</translation>
     </message>
     <message>
-        <source>Copyright (C) 2009-%i The Supcoin Core Developers</source>
-        <translation>Copyright (C) 2009-%i The Supcoin Core Developers</translation>
+        <source>Copyright (C) 2009-%i The Bitcoin Core developers</source>
+        <translation>Copyright (C) 2009-%i The Bitcoin Core developers</translation>
     </message>
     <message>
         <source>Error loading wallet.dat: Wallet requires newer version of Supcoin Core</source>

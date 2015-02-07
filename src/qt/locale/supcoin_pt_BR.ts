@@ -2116,7 +2116,7 @@ Endereço: %4</translation>
         <translation>Núcleo Supcoin</translation>
     </message>
     <message>
-        <source>The Supcoin Core developers</source>
+        <source>The Bitcoin Core developers</source>
         <translation>Programadores do Supcoin Core</translation>
     </message>
     <message>
@@ -2882,7 +2882,7 @@ por exemplo: alertnotify=echo %%s | mail -s "Supcoin Alert" admin@foo.com⏎
         <translation>Connecte-se através de um proxy SOCKS5</translation>
     </message>
     <message>
-        <source>Copyright (C) 2009-%i The Supcoin Core Developers</source>
+        <source>Copyright (C) 2009-%i The Bitcoin Core developers</source>
         <translation>Copyright (C) 2009-%i Desenvolvedores Supcoin Core</translation>
     </message>
     <message>

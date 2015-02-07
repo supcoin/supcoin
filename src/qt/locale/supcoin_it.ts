@@ -2252,7 +2252,7 @@ Più URL vengono separati da una barra verticale |.</translation>
         <translation>Supcoin Core</translation>
     </message>
     <message>
-        <source>The Supcoin Core developers</source>
+        <source>The Bitcoin Core developers</source>
         <translation>Gli sviluppatori del Supcoin Core</translation>
     </message>
     <message>
@@ -3058,8 +3058,8 @@ ad esempio: alertnotify=echo %%s | mail -s "Allarme Supcoin" admin@foo.com
         <translation>Connetti attraverso SOCKS5 proxy</translation>
     </message>
     <message>
-        <source>Copyright (C) 2009-%i The Supcoin Core Developers</source>
-        <translation>Copyright (C) 2009-%i The Supcoin Core Developers</translation>
+        <source>Copyright (C) 2009-%i The Bitcoin Core developers</source>
+        <translation>Copyright (C) 2009-%i The Bitcoin Core developers</translation>
     </message>
     <message>
         <source>Error loading wallet.dat: Wallet requires newer version of Supcoin Core</source>

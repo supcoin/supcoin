@@ -2289,7 +2289,7 @@ Adresse: %4
         <translation>Supcoin Core</translation>
     </message>
     <message>
-        <source>The Supcoin Core developers</source>
+        <source>The Bitcoin Core developers</source>
         <translation>Supcoin Core utviklerne</translation>
     </message>
     <message>
@@ -3130,7 +3130,7 @@ For eksempel: varselmelding=echo %%s | mail -s "Supcoin Varsel" admin@foo.com</t
         <translation>Koble til via SOCKS5-proxy</translation>
     </message>
     <message>
-        <source>Copyright (C) 2009-%i The Supcoin Core Developers</source>
+        <source>Copyright (C) 2009-%i The Bitcoin Core developers</source>
         <translation>Copyright (C) 2009-%i utviklerne av Supcoin Core</translation>
     </message>
     <message>

@@ -2282,7 +2282,7 @@ Adress: %4
         <translation>Supcoin Kärna</translation>
     </message>
     <message>
-        <source>The Supcoin Core developers</source>
+        <source>The Bitcoin Core developers</source>
         <translation>Supcoin Core-utvecklarna</translation>
     </message>
     <message>
@@ -3120,7 +3120,7 @@ till exempel: alertnotify=echo %%s | mail -s "Supcoin Alert" admin@foo.com
         <translation>Anslut genom SOCKS5 proxy</translation>
     </message>
     <message>
-        <source>Copyright (C) 2009-%i The Supcoin Core Developers</source>
+        <source>Copyright (C) 2009-%i The Bitcoin Core developers</source>
         <translation>Copyright (C) 2009-%i Supcoin Core Utvecklarna</translation>
     </message>
     <message>

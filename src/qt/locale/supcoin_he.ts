@@ -2148,7 +2148,7 @@ Address: %4
         <translation>ליבת ביטקוין</translation>
     </message>
     <message>
-        <source>The Supcoin Core developers</source>
+        <source>The Bitcoin Core developers</source>
         <translation>מתכנתי ליבת ביטקוין</translation>
     </message>
     <message>
@@ -2894,7 +2894,7 @@ rpcpassword=%s
         <translation>התחברות דרך מתווך SOCKS5</translation>
     </message>
     <message>
-        <source>Copyright (C) 2009-%i The Supcoin Core Developers</source>
+        <source>Copyright (C) 2009-%i The Bitcoin Core developers</source>
         <translation>כל הזכויות שמורות (C)‏ 2009‏-%i מתכנתי ליבת ביטקוין</translation>
     </message>
     <message>

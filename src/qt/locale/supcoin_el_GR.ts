@@ -1983,7 +1983,7 @@ Address: %4
         <translation>Supcoin Core</translation>
     </message>
     <message>
-        <source>The Supcoin Core developers</source>
+        <source>The Bitcoin Core developers</source>
         <translation>Οι προγραμματιστές του Supcoin Core</translation>
     </message>
     <message>

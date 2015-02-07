@@ -6,9 +6,9 @@ Source: http://sourceforge.net/projects/supcoin/files/
  https://github.com/supcoin/supcoin
 
 Files: *
-Copyright: 2009-2012, Supcoin Core Developers
+Copyright: 2009-2012, Bitcoin Core developers
 License: Expat
-Comment: The Supcoin Core Developers encompasses the current developers listed on supcoin.org,
+Comment: The Bitcoin Core developers encompasses the current developers listed on supcoin.org,
          as well as the numerous contributors to the project.
 
 Files: src/json/*

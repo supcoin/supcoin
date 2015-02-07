@@ -2102,7 +2102,7 @@ Address: %4
         <translation>比特币核心</translation>
     </message>
     <message>
-        <source>The Supcoin Core developers</source>
+        <source>The Bitcoin Core developers</source>
         <translation>Supcoin Core 的开发者</translation>
     </message>
     <message>
@@ -2822,7 +2822,7 @@ rpcpassword=%s
         <translation>通过 SOCKS5 代理连接</translation>
     </message>
     <message>
-        <source>Copyright (C) 2009-%i The Supcoin Core Developers</source>
+        <source>Copyright (C) 2009-%i The Bitcoin Core developers</source>
         <translation>版权所有 (C) 2009-%i Supcoin Core 开发者</translation>
     </message>
     <message>

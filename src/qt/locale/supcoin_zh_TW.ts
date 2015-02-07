@@ -2289,7 +2289,7 @@ Address: %4
         <translation>位元幣核心</translation>
     </message>
     <message>
-        <source>The Supcoin Core developers</source>
+        <source>The Bitcoin Core developers</source>
         <translation>位元幣核心開發人員</translation>
     </message>
     <message>
@@ -3128,7 +3128,7 @@ alertnotify=echo %%s | mail -s "Supcoin Alert" admin@foo.com</translation>
         <translation>透過 SOCKS5 代理伺服器連線</translation>
     </message>
     <message>
-        <source>Copyright (C) 2009-%i The Supcoin Core Developers</source>
+        <source>Copyright (C) 2009-%i The Bitcoin Core developers</source>
         <translation>版權為位元幣核心開發人員自西元 2009 至 %i 年起所有</translation>
     </message>
     <message>

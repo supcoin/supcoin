@@ -1857,7 +1857,7 @@ Address: %4
         <translation>Supcoin Core</translation>
     </message>
     <message>
-        <source>The Supcoin Core developers</source>
+        <source>The Bitcoin Core developers</source>
         <translation>Supcoin Core-ს ავტორები</translation>
     </message>
     <message>

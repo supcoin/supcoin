@@ -1932,7 +1932,7 @@ Adresa: %4</translation>
         <translation>Jadro Supcoin</translation>
     </message>
     <message>
-        <source>The Supcoin Core developers</source>
+        <source>The Bitcoin Core developers</source>
         <translation>Vývojári jadra Supcoin</translation>
     </message>
     <message>

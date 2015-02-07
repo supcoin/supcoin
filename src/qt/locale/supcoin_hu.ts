@@ -1627,7 +1627,7 @@ Cím: %4
         <translation>Supcoin Core</translation>
     </message>
     <message>
-        <source>The Supcoin Core developers</source>
+        <source>The Bitcoin Core developers</source>
         <translation>A Supcoin fejlesztői</translation>
     </message>
     <message>

@@ -1676,7 +1676,7 @@ Address: %4
         <translation>Supcoin のコア</translation>
     </message>
     <message>
-        <source>The Supcoin Core developers</source>
+        <source>The Bitcoin Core developers</source>
         <translation>ビットコインコアの開発者</translation>
     </message>
     <message>

@@ -625,7 +625,7 @@ Address: %4
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>The Supcoin Core developers</source>
+        <source>The Bitcoin Core developers</source>
         <translation>Распрацоўнікі Supcoin Core</translation>
     </message>
     <message>

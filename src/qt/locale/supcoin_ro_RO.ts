@@ -1809,7 +1809,7 @@ Adresa: %4
         <translation>Supcoin Core</translation>
     </message>
     <message>
-        <source>The Supcoin Core developers</source>
+        <source>The Bitcoin Core developers</source>
         <translation>Dezvoltatorii Supcoin Core</translation>
     </message>
     <message>

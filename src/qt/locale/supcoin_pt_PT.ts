@@ -1944,7 +1944,7 @@ Endereço: %4</translation>
         <translation>Supcoin Core</translation>
     </message>
     <message>
-        <source>The Supcoin Core developers</source>
+        <source>The Bitcoin Core developers</source>
         <translation>Os programadores do Supcoin Core</translation>
     </message>
     <message>
