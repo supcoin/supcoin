@@ -22,6 +22,7 @@ struct SeedSpec6 {
     uint16_t port;
 };
 
+
 #include "chainparamsseeds.h"
 
 static const uint256 MAINNET_GENESIS("0x000d57b579b9c8ced6ef4c7a6f1bcf8dd40f8b0fed070987171e6dd9cf18d990");
