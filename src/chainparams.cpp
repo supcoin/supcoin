@@ -24,9 +24,9 @@ struct SeedSpec6 {
 
 #include "chainparamsseeds.h"
 
-static const uint256 MAINNET_GENESIS("0x00009add4210a4be97ebf6f1277bf9b43fe91dbd34b31cc87b34ca26c78245aa");
-static const uint256 TESTNET_GENESIS("0x000082c0b945dabb8ee379b40d6ba51fb7ed7200a1128a81227d530cafff1a8c");
-static const uint256 REGNET_GENESIS("0x02aeaf70c93a635897ad9e3233f7f3a8c74924155a10cde76133f50ac1c95cb2");
+static const uint256 MAINNET_GENESIS("0x000d57b579b9c8ced6ef4c7a6f1bcf8dd40f8b0fed070987171e6dd9cf18d990");
+static const uint256 TESTNET_GENESIS("0x000bbd78b1405de82ee96cdfab2d51512b72910e7a0a6998f21123b9ea3682ab");
+static const uint256 REGNET_GENESIS("0x5c78e2064a3b918f82dadf65245243f4623e0ff704855abac2a679cc5c593faa");
 
 
 /**
@@ -175,8 +175,12 @@ public:
         genesis.nVersion = 1;
         genesis.nBits    = bnProofOfWorkLimit.GetCompact();
 
+genesis.nTime = 1423323751;
+genesis.nNonce = 31726;
+assert(genesis.hashMerkleRoot == uint256("0x33b388e1b54a4f177187adcb4b8a3cb2913e2615a6110462d17cfc7eb92bceeb"));
+//genesis hash: 0x000d57b579b9c8ced6ef4c7a6f1bcf8dd40f8b0fed070987171e6dd9cf18d990
 
-        MineNewGenesisBlock();
+        //MineNewGenesisBlock();
         hashGenesisBlock = genesis.GetHash();
 
         assert(hashGenesisBlock == MAINNET_GENESIS);
@@ -226,8 +230,13 @@ public:
         nTargetTimespan = 14 * 24 * 60 * 60; //! two weeks
         nTargetSpacing = 1 * 60;
 
+genesis.nTime = 1423324086;
+genesis.nNonce = 789;
+assert(genesis.hashMerkleRoot == uint256("0x33b388e1b54a4f177187adcb4b8a3cb2913e2615a6110462d17cfc7eb92bceeb"));
+//genesis hash: 0x000bbd78b1405de82ee96cdfab2d51512b72910e7a0a6998f21123b9ea3682ab
 
-        MineNewGenesisBlock();
+
+        //MineNewGenesisBlock();
         hashGenesisBlock = genesis.GetHash();
         assert(hashGenesisBlock == TESTNET_GENESIS);
 
@@ -277,8 +286,13 @@ public:
         bnProofOfWorkLimit = ~uint256(0) >> 1;
         genesis.nBits    = bnProofOfWorkLimit.GetCompact();
 
+genesis.nTime = 1423324187;
+genesis.nNonce = 0;
+assert(genesis.hashMerkleRoot == uint256("0x33b388e1b54a4f177187adcb4b8a3cb2913e2615a6110462d17cfc7eb92bceeb"));
+//genesis hash: 0x5c78e2064a3b918f82dadf65245243f4623e0ff704855abac2a679cc5c593faa
 
-        MineNewGenesisBlock();
+
+        //MineNewGenesisBlock();
         hashGenesisBlock = genesis.GetHash();
         nDefaultPort = 18444;
 
