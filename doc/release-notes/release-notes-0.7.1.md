@@ -77,7 +77,7 @@ Bug fixes
 
 * Clicking on a supcoin: URI on Windows should now launch Supcoin-Qt properly.
 
-* When running -testnet, use RPC port 18332 by default.
+* When running -testnet, use RPC port 14412 by default.
 
 * Better detection and handling of corrupt wallet.dat and blkindex.dat files.
   Previous versions would crash with a DB_RUNRECOVERY exception, this
