@@ -10,10 +10,171 @@
 #include "utilstrencodings.h"
 #include "crypto/common.h"
 
+
+static const int HASH_MEMORY=512*1024;
+
+
+#define ROTL(a, b) (((a) << (b)) | ((a) >> (32 - (b))))
+//note, this is 64 bytes
+static inline void xor_salsa8(uint32_t B[16], const uint32_t Bx[16])
+{
+    uint32_t x00,x01,x02,x03,x04,x05,x06,x07,x08,x09,x10,x11,x12,x13,x14,x15;
+    int i;
+
+    x00 = (B[ 0] ^= Bx[ 0]);
+    x01 = (B[ 1] ^= Bx[ 1]);
+    x02 = (B[ 2] ^= Bx[ 2]);
+    x03 = (B[ 3] ^= Bx[ 3]);
+    x04 = (B[ 4] ^= Bx[ 4]);
+    x05 = (B[ 5] ^= Bx[ 5]);
+    x06 = (B[ 6] ^= Bx[ 6]);
+    x07 = (B[ 7] ^= Bx[ 7]);
+    x08 = (B[ 8] ^= Bx[ 8]);
+    x09 = (B[ 9] ^= Bx[ 9]);
+    x10 = (B[10] ^= Bx[10]);
+    x11 = (B[11] ^= Bx[11]);
+    x12 = (B[12] ^= Bx[12]);
+    x13 = (B[13] ^= Bx[13]);
+    x14 = (B[14] ^= Bx[14]);
+    x15 = (B[15] ^= Bx[15]);
+    for (i = 0; i < 8; i += 2) {
+        /* Operate on columns. */
+        x04 ^= ROTL(x00 + x12,  7);  x09 ^= ROTL(x05 + x01,  7);
+        x14 ^= ROTL(x10 + x06,  7);  x03 ^= ROTL(x15 + x11,  7);
+
+        x08 ^= ROTL(x04 + x00,  9);  x13 ^= ROTL(x09 + x05,  9);
+        x02 ^= ROTL(x14 + x10,  9);  x07 ^= ROTL(x03 + x15,  9);
+
+        x12 ^= ROTL(x08 + x04, 13);  x01 ^= ROTL(x13 + x09, 13);
+        x06 ^= ROTL(x02 + x14, 13);  x11 ^= ROTL(x07 + x03, 13);
+
+        x00 ^= ROTL(x12 + x08, 18);  x05 ^= ROTL(x01 + x13, 18);
+        x10 ^= ROTL(x06 + x02, 18);  x15 ^= ROTL(x11 + x07, 18);
+
+        /* Operate on rows. */
+        x01 ^= ROTL(x00 + x03,  7);  x06 ^= ROTL(x05 + x04,  7);
+        x11 ^= ROTL(x10 + x09,  7);  x12 ^= ROTL(x15 + x14,  7);
+
+        x02 ^= ROTL(x01 + x00,  9);  x07 ^= ROTL(x06 + x05,  9);
+        x08 ^= ROTL(x11 + x10,  9);  x13 ^= ROTL(x12 + x15,  9);
+
+        x03 ^= ROTL(x02 + x01, 13);  x04 ^= ROTL(x07 + x06, 13);
+        x09 ^= ROTL(x08 + x11, 13);  x14 ^= ROTL(x13 + x12, 13);
+
+        x00 ^= ROTL(x03 + x02, 18);  x05 ^= ROTL(x04 + x07, 18);
+        x10 ^= ROTL(x09 + x08, 18);  x15 ^= ROTL(x14 + x13, 18);
+    }
+    B[ 0] += x00;
+    B[ 1] += x01;
+    B[ 2] += x02;
+    B[ 3] += x03;
+    B[ 4] += x04;
+    B[ 5] += x05;
+    B[ 6] += x06;
+    B[ 7] += x07;
+    B[ 8] += x08;
+    B[ 9] += x09;
+    B[10] += x10;
+    B[11] += x11;
+    B[12] += x12;
+    B[13] += x13;
+    B[14] += x14;
+    B[15] += x15;
+}
+
 uint256 CBlockHeader::GetHash() const
 {
-    return Hash(BEGIN(nVersion), END(nNonce));
+    int BLOCK_HEADER_SIZE=80;
+  //TODO: definitely not endian safe
+    uint8_t data[BLOCK_HEADER_SIZE];
+    WriteLE32(&data[0], nVersion);
+    memcpy(&data[4], hashPrevBlock.begin(), hashPrevBlock.size());
+    memcpy(&data[36], hashMerkleRoot.begin(), hashMerkleRoot.size());
+    WriteLE32(&data[68], nTime);
+    WriteLE32(&data[72], nBits);
+    //WriteLE32(&data[76], nExtraNonce);
+    WriteLE32(&data[76], nNonce);
+
+    //could probably cache this so that we can skip hash generation when the first sha256 hash matches
+    uint8_t *hashbuffer = new uint8_t[HASH_MEMORY]; //don't allocate this on stack, since it's huge.. 
+    //allocating on heap adds hardly any overhead on Linux
+    int size=HASH_MEMORY;
+    CSHA256 sha;
+    //uint8_t buffer[HASH_MEMORY];
+    memset(hashbuffer, 0, 64); 
+    //memcpy(hashbuffer, data.begin(), 32); 
+    sha.Reset().Write(data, BLOCK_HEADER_SIZE).Finalize(&hashbuffer[0]);
+    for (int i = 64; i < size-32; i+=32)
+    {
+        uint64_t randmax = (uint64_t)i; //we could use size here, but then it's probable to use 0 as the value in most cases
+        uint8_t joint[64];
+        uint32_t randbuffer[16];
+        assert(i-32>0);
+        assert(i<size);
+        uint32_t randseed[16];
+        assert(sizeof(int)*16 == 64);
+
+        //setup randbuffer to be an array of random indexes
+        memcpy(randseed, &hashbuffer[i-64], 64);
+        if(i>128)
+        {
+            memcpy(randbuffer, &hashbuffer[i-128], 64);
+        }else
+        {
+            memset(&randbuffer, 0, 64);
+        }
+        xor_salsa8(randbuffer, randseed);
+
+        memcpy(joint, &hashbuffer[i-32], 32);
+        //uint32_t seed=*((uint32_t*)&joint[0]); //use the last hash value as the seed
+        for (int j = 32; j < 64; j++)
+        {
+            assert((j - 32) / 2 < 16);
+            //every other time, change to next random index
+            uint32_t rand = randbuffer[(j - 32)/2] % randmax;
+            assert(j>0 && j<64);
+            assert(rand<size);
+            joint[j] = hashbuffer[rand];
+        }
+        assert(i>=0 && i+32<size);
+        sha.Reset().Write(joint, 64).Finalize(&hashbuffer[i]);
+
+        //setup randbuffer to be an array of random indexes
+        memcpy(randseed, &hashbuffer[i-32], 64); //use last hash value and previous hash value(post-mixing)
+        if(i>128)
+        {
+            memcpy(randbuffer, &hashbuffer[i-128], 64);
+        }else
+        {
+            memset(&randbuffer, 0, 64);
+        }
+        xor_salsa8(randbuffer, randseed);
+
+        //seed=*((uint32_t*)&hashbuffer[i]); //use the last hash value as the seed
+        for (int j = 0; j < 32; j++)
+        {
+            assert(j/2 < 16);
+            uint32_t rand = randbuffer[j/2] % randmax;
+            assert(rand < size);
+            assert(j+i >= 0 && j+i < size);
+            hashbuffer[rand] = hashbuffer[j+i];
+        }
+        //memcpy(&buffer[i+32], tmp.begin(), 32);
+    }
+    //note: off-by-one error is likely here...
+    for (int i = size-64-1; i > 64; i -= 64)
+    {
+      assert(i-64 >= 0);
+      assert(i+64<size);
+        sha.Reset().Write(&hashbuffer[i], 64).Finalize(&hashbuffer[i-64]);
+    }
+    uint256 output;
+    memcpy((unsigned char*)&output, &hashbuffer[0], 32);
+    delete[] hashbuffer;
+    return output;
 }
+
+
 
 uint256 CBlock::BuildMerkleTree(bool* fMutated) const
 {
