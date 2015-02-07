@@ -151,17 +151,17 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
-        pchMessageStart[0] = 0xf9;
-        pchMessageStart[1] = 0xbe;
-        pchMessageStart[2] = 0xb4;
-        pchMessageStart[3] = 0xd9;
+        pchMessageStart[0] = 0xfa;
+        pchMessageStart[1] = 0xbf;
+        pchMessageStart[2] = 0xb1;
+        pchMessageStart[3] = 0xd0;
         vAlertPubKey = ParseHex("04fc9702847840aaf195de8442ebecedf5b095cdbb9bc716bda9110971b28a49e0ead8564ff0db22209e0374782c093bb899692d524e9d6a6956e7c5ecbcd68284");
         nDefaultPort = 8333;
         bnProofOfWorkLimit = ~uint256(0) >> 12; //about 1.2 minutes for a single-core moderate processor PC
         nSubsidyHalvingInterval = 210000;
         nMinerThreads = 0;
-        nTargetTimespan = 14 * 24 * 60 * 60; // two weeks
-        nTargetSpacing = 1 * 60;
+        nTargetTimespan = 5 * 60; // these have to be the same for digishield
+        nTargetSpacing = 5 * 60;
 
         const char* pszTimestamp = "or on";
         CMutableTransaction txNew;
@@ -221,15 +221,15 @@ public:
     CTestNetParams() {
         networkID = CBaseChainParams::TESTNET;
         strNetworkID = "test";
-        pchMessageStart[0] = 0x0b;
-        pchMessageStart[1] = 0x11;
-        pchMessageStart[2] = 0x09;
-        pchMessageStart[3] = 0x07;
+        pchMessageStart[0] = 0x1b;
+        pchMessageStart[1] = 0x12;
+        pchMessageStart[2] = 0x19;
+        pchMessageStart[3] = 0x02;
         vAlertPubKey = ParseHex("04302390343f91cc401d56d68b123028bf52e5fca1939df127f63c6467cdf9c8e2c14b61104cf817d0b780da337893ecc4aaff1309e536162dabbdb45200ca2b0a");
         nDefaultPort = 18333;
         nMinerThreads = 0;
-        nTargetTimespan = 14 * 24 * 60 * 60; //! two weeks
-        nTargetSpacing = 1 * 60;
+        nTargetTimespan = 5 * 60;
+        nTargetSpacing = 5 * 60;
 
 genesis.nTime = 1423324086;
 genesis.nNonce = 789;
@@ -276,14 +276,14 @@ public:
     CRegTestParams() {
         networkID = CBaseChainParams::REGTEST;
         strNetworkID = "regtest";
-        pchMessageStart[0] = 0xfa;
+        pchMessageStart[0] = 0xff;
         pchMessageStart[1] = 0xbf;
         pchMessageStart[2] = 0xb5;
-        pchMessageStart[3] = 0xda;
+        pchMessageStart[3] = 0xdf;
         nSubsidyHalvingInterval = 150;
         nMinerThreads = 1;
-        nTargetTimespan = 14 * 24 * 60 * 60; //! two weeks
-        nTargetSpacing = 10 * 60;
+        nTargetTimespan = 5 * 60; 
+        nTargetSpacing = 5 * 60;
         bnProofOfWorkLimit = ~uint256(0) >> 1;
         genesis.nBits    = bnProofOfWorkLimit.GetCompact();
 
