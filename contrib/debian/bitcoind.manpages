@@ -1,2 +1,2 @@
-debian/manpages/bitcoind.1
-debian/manpages/bitcoin.conf.5
+debian/manpages/supcoind.1
+debian/manpages/supcoin.conf.5

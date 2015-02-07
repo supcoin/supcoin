@@ -3,11 +3,11 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_COMPAT_H
-#define BITCOIN_COMPAT_H
+#ifndef SUPCOIN_COMPAT_H
+#define SUPCOIN_COMPAT_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/bitcoin-config.h"
+#include "config/supcoin-config.h"
 #endif
 
 #ifdef WIN32
@@ -92,4 +92,4 @@ typedef u_int SOCKET;
 size_t strnlen( const char *start, size_t max_len);
 #endif // HAVE_DECL_STRNLEN
 
-#endif // BITCOIN_COMPAT_H
+#endif // SUPCOIN_COMPAT_H

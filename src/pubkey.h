@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_PUBKEY_H
-#define BITCOIN_PUBKEY_H
+#ifndef SUPCOIN_PUBKEY_H
+#define SUPCOIN_PUBKEY_H
 
 #include "hash.h"
 #include "serialize.h"
@@ -203,4 +203,4 @@ struct CExtPubKey {
     bool Derive(CExtPubKey& out, unsigned int nChild) const;
 };
 
-#endif // BITCOIN_PUBKEY_H
+#endif // SUPCOIN_PUBKEY_H

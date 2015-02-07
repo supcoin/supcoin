@@ -1,27 +1,27 @@
-# /etc/conf.d/bitcoind: config file for /etc/init.d/bitcoind
+# /etc/conf.d/supcoind: config file for /etc/init.d/supcoind
 
 # Config file location
-#BITCOIND_CONFIGFILE="/etc/bitcoin/bitcoin.conf"
+#SUPCOIND_CONFIGFILE="/etc/supcoin/supcoin.conf"
 
-# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
-#BITCOIND_PIDDIR="/var/run/bitcoind"
+# What directory to write pidfile to?  (created and owned by $SUPCOIND_USER)
+#SUPCOIND_PIDDIR="/var/run/supcoind"
 
 # What filename to give the pidfile
-#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/bitcoind.pid"
+#SUPCOIND_PIDFILE="${SUPCOIND_PIDDIR}/supcoind.pid"
 
-# Where to write bitcoind data (be mindful that the blockchain is large)
-#BITCOIND_DATADIR="/var/lib/bitcoind"
+# Where to write supcoind data (be mindful that the blockchain is large)
+#SUPCOIND_DATADIR="/var/lib/supcoind"
 
-# User and group to own bitcoind process
-#BITCOIND_USER="bitcoin"
-#BITCOIND_GROUP="bitcoin"
+# User and group to own supcoind process
+#SUPCOIND_USER="supcoin"
+#SUPCOIND_GROUP="supcoin"
 
-# Path to bitcoind executable
-#BITCOIND_BIN="/usr/bin/bitcoind"
+# Path to supcoind executable
+#SUPCOIND_BIN="/usr/bin/supcoind"
 
-# Nice value to run bitcoind under
-#BITCOIND_NICE=0
+# Nice value to run supcoind under
+#SUPCOIND_NICE=0
 
 # Additional options (avoid -conf and -datadir, use flags above)
-BITCOIND_OPTS="-disablewallet"
+SUPCOIND_OPTS="-disablewallet"
 

@@ -2,34 +2,34 @@
 
 # backward compatibility for existing gentoo layout 
 #
-if [ -d "/var/lib/bitcoin/.bitcoin" ]; then
-	BITCOIND_DEFAULT_DATADIR="/var/lib/bitcoin/.bitcoin"
+if [ -d "/var/lib/supcoin/.supcoin" ]; then
+	SUPCOIND_DEFAULT_DATADIR="/var/lib/supcoin/.supcoin"
 else
-	BITCOIND_DEFAULT_DATADIR="/var/lib/bitcoind"
+	SUPCOIND_DEFAULT_DATADIR="/var/lib/supcoind"
 fi
 
-BITCOIND_CONFIGFILE=${BITCOIND_CONFIGFILE:-/etc/bitcoin/bitcoin.conf}
-BITCOIND_PIDDIR=${BITCOIND_PIDDIR:-/var/run/bitcoind}
-BITCOIND_PIDFILE=${BITCOIND_PIDFILE:-${BITCOIND_PIDDIR}/bitcoind.pid}
-BITCOIND_DATADIR=${BITCOIND_DATADIR:-${BITCOIND_DEFAULT_DATADIR}}
-BITCOIND_USER=${BITCOIND_USER:-bitcoin}
-BITCOIND_GROUP=${BITCOIND_GROUP:-bitcoin}
-BITCOIND_BIN=${BITCOIND_BIN:-/usr/bin/bitcoind}
+SUPCOIND_CONFIGFILE=${SUPCOIND_CONFIGFILE:-/etc/supcoin/supcoin.conf}
+SUPCOIND_PIDDIR=${SUPCOIND_PIDDIR:-/var/run/supcoind}
+SUPCOIND_PIDFILE=${SUPCOIND_PIDFILE:-${SUPCOIND_PIDDIR}/supcoind.pid}
+SUPCOIND_DATADIR=${SUPCOIND_DATADIR:-${SUPCOIND_DEFAULT_DATADIR}}
+SUPCOIND_USER=${SUPCOIND_USER:-supcoin}
+SUPCOIND_GROUP=${SUPCOIND_GROUP:-supcoin}
+SUPCOIND_BIN=${SUPCOIND_BIN:-/usr/bin/supcoind}
 
-name="Bitcoin Core Daemon"
-description="Bitcoin crypto-currency p2p network daemon"
+name="Supcoin Core Daemon"
+description="Supcoin crypto-currency p2p network daemon"
 
-command="/usr/bin/bitcoind"
-command_args="-pid=\"${BITCOIND_PIDFILE}\" \
-		-conf=\"${BITCOIND_CONFIGFILE}\" \
-		-datadir=\"${BITCOIND_DATADIR}\" \
+command="/usr/bin/supcoind"
+command_args="-pid=\"${SUPCOIND_PIDFILE}\" \
+		-conf=\"${SUPCOIND_CONFIGFILE}\" \
+		-datadir=\"${SUPCOIND_DATADIR}\" \
 		-daemon \
-		${BITCOIND_OPTS}"
+		${SUPCOIND_OPTS}"
 
-required_files="${BITCOIND_CONFIGFILE}"
-start_stop_daemon_args="-u ${BITCOIND_USER} \
-			-N ${BITCOIND_NICE:-0} -w 2000"
-pidfile="${BITCOIND_PIDFILE}"
+required_files="${SUPCOIND_CONFIGFILE}"
+start_stop_daemon_args="-u ${SUPCOIND_USER} \
+			-N ${SUPCOIND_NICE:-0} -w 2000"
+pidfile="${SUPCOIND_PIDFILE}"
 retry=60
 
 depend() {
@@ -44,29 +44,29 @@ start_pre() {
 	checkpath \
 	-d \
 	--mode 0750 \
-	--owner "${BITCOIND_USER}:${BITCOIND_GROUP}" \
-	"${BITCOIND_DATADIR}"
+	--owner "${SUPCOIND_USER}:${SUPCOIND_GROUP}" \
+	"${SUPCOIND_DATADIR}"
 
 	checkpath \
 	-d \
 	--mode 0755 \
-	--owner "${BITCOIND_USER}:${BITCOIND_GROUP}" \
-	"${BITCOIND_PIDDIR}"
+	--owner "${SUPCOIND_USER}:${SUPCOIND_GROUP}" \
+	"${SUPCOIND_PIDDIR}"
 
 	checkpath -f \
-	-o ${BITCOIND_USER}:${BITCOIND_GROUP} \
+	-o ${SUPCOIND_USER}:${SUPCOIND_GROUP} \
 	-m 0660 \
-	${BITCOIND_CONFIGFILE}
+	${SUPCOIND_CONFIGFILE}
 
 	checkconfig || return 1
 }
 
 checkconfig()
 {
-	if ! grep -qs '^rpcpassword=' "${BITCOIND_CONFIGFILE}" ; then
+	if ! grep -qs '^rpcpassword=' "${SUPCOIND_CONFIGFILE}" ; then
 		eerror ""
-		eerror "ERROR: You must set a secure rpcpassword to run bitcoind."
-		eerror "The setting must appear in ${BITCOIND_CONFIGFILE}"
+		eerror "ERROR: You must set a secure rpcpassword to run supcoind."
+		eerror "The setting must appear in ${SUPCOIND_CONFIGFILE}"
 		eerror ""
 		eerror "This password is security critical to securing wallets "
 		eerror "and must not be the same as the rpcuser setting."
@@ -78,7 +78,7 @@ checkconfig()
 		eerror "It is also recommended that you also set alertnotify so you are "
 		eerror "notified of problems:"
 		eerror ""
-		eerror "ie: alertnotify=echo %%s | mail -s \"Bitcoin Alert\"" \
+		eerror "ie: alertnotify=echo %%s | mail -s \"Supcoin Alert\"" \
 			"admin@foo.com"
 		eerror ""
 		return 1

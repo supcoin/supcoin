@@ -1,6 +1,6 @@
 [Protocol]
-exec=bitcoin-qt '%u'
-protocol=bitcoin
+exec=supcoin-qt '%u'
+protocol=supcoin
 input=none
 output=none
 helper=true

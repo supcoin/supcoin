@@ -3,8 +3,8 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_ALERT_H
-#define BITCOIN_ALERT_H
+#ifndef SUPCOIN_ALERT_H
+#define SUPCOIN_ALERT_H
 
 #include "serialize.h"
 #include "sync.h"
@@ -110,4 +110,4 @@ public:
     static CAlert getAlertByHash(const uint256 &hash);
 };
 
-#endif // BITCOIN_ALERT_H
+#endif // SUPCOIN_ALERT_H

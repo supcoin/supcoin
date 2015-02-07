@@ -3,8 +3,8 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_NET_H
-#define BITCOIN_NET_H
+#ifndef SUPCOIN_NET_H
+#define SUPCOIN_NET_H
 
 #include "bloom.h"
 #include "compat.h"
@@ -621,4 +621,4 @@ public:
     bool Read(CAddrMan& addr);
 };
 
-#endif // BITCOIN_NET_H
+#endif // SUPCOIN_NET_H

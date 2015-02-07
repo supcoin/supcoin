@@ -113,7 +113,7 @@
     </message>
     </context>
 <context>
-    <name>BitcoinGUI</name>
+    <name>SupcoinGUI</name>
     <message>
         <source>Synchronizing with network...</source>
         <translation>Sincronizando con la red...</translation>
@@ -163,8 +163,8 @@
         <translation>Barra de herramientas</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Bitcoin network</source>
-        <translation><numerusform>%n conexión activa a la red Bitcoin </numerusform><numerusform>%n conexiones activas a la red Bitcoin</numerusform></translation>
+        <source>%n active connection(s) to Supcoin network</source>
+        <translation><numerusform>%n conexión activa a la red Supcoin </numerusform><numerusform>%n conexiones activas a la red Supcoin</numerusform></translation>
     </message>
     <message>
         <source>Up to date</source>
@@ -477,6 +477,6 @@
     <name>WalletView</name>
     </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>supcoin-core</name>
     </context>
 </TS>

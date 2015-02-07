@@ -2,8 +2,8 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_QT_CLIENTMODEL_H
-#define BITCOIN_QT_CLIENTMODEL_H
+#ifndef SUPCOIN_QT_CLIENTMODEL_H
+#define SUPCOIN_QT_CLIENTMODEL_H
 
 #include <QObject>
 
@@ -33,7 +33,7 @@ enum NumConnections {
     CONNECTIONS_ALL  = (CONNECTIONS_IN | CONNECTIONS_OUT),
 };
 
-/** Model for Bitcoin network client. */
+/** Model for Supcoin network client. */
 class ClientModel : public QObject
 {
     Q_OBJECT
@@ -102,4 +102,4 @@ public slots:
     void updateAlert(const QString &hash, int status);
 };
 
-#endif // BITCOIN_QT_CLIENTMODEL_H
+#endif // SUPCOIN_QT_CLIENTMODEL_H

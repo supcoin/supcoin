@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_WALLET_H
-#define BITCOIN_WALLET_H
+#ifndef SUPCOIN_WALLET_H
+#define SUPCOIN_WALLET_H
 
 #include "amount.h"
 #include "primitives/block.h"
@@ -1078,4 +1078,4 @@ private:
     std::vector<char> _ssExtra;
 };
 
-#endif // BITCOIN_WALLET_H
+#endif // SUPCOIN_WALLET_H

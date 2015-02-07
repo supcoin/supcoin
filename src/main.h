@@ -3,11 +3,11 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_MAIN_H
-#define BITCOIN_MAIN_H
+#ifndef SUPCOIN_MAIN_H
+#define SUPCOIN_MAIN_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/bitcoin-config.h"
+#include "config/supcoin-config.h"
 #endif
 
 #include "amount.h"
@@ -602,4 +602,4 @@ protected:
     friend void ::UnregisterAllValidationInterfaces();
 };
 
-#endif // BITCOIN_MAIN_H
+#endif // SUPCOIN_MAIN_H

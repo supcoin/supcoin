@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_VERSION_H
-#define BITCOIN_VERSION_H
+#ifndef SUPCOIN_VERSION_H
+#define SUPCOIN_VERSION_H
 
 /**
  * network protocol versioning
@@ -34,4 +34,4 @@ static const int BIP0031_VERSION = 60000;
 //! "mempool" command, enhanced "getdata" behavior starts with this version
 static const int MEMPOOL_GD_VERSION = 60002;
 
-#endif // BITCOIN_VERSION_H
+#endif // SUPCOIN_VERSION_H

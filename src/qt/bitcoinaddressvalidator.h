@@ -2,34 +2,34 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_QT_BITCOINADDRESSVALIDATOR_H
-#define BITCOIN_QT_BITCOINADDRESSVALIDATOR_H
+#ifndef SUPCOIN_QT_SUPCOINADDRESSVALIDATOR_H
+#define SUPCOIN_QT_SUPCOINADDRESSVALIDATOR_H
 
 #include <QValidator>
 
 /** Base58 entry widget validator, checks for valid characters and
  * removes some whitespace.
  */
-class BitcoinAddressEntryValidator : public QValidator
+class SupcoinAddressEntryValidator : public QValidator
 {
     Q_OBJECT
 
 public:
-    explicit BitcoinAddressEntryValidator(QObject *parent);
+    explicit SupcoinAddressEntryValidator(QObject *parent);
 
     State validate(QString &input, int &pos) const;
 };
 
-/** Bitcoin address widget validator, checks for a valid bitcoin address.
+/** Supcoin address widget validator, checks for a valid supcoin address.
  */
-class BitcoinAddressCheckValidator : public QValidator
+class SupcoinAddressCheckValidator : public QValidator
 {
     Q_OBJECT
 
 public:
-    explicit BitcoinAddressCheckValidator(QObject *parent);
+    explicit SupcoinAddressCheckValidator(QObject *parent);
 
     State validate(QString &input, int &pos) const;
 };
 
-#endif // BITCOIN_QT_BITCOINADDRESSVALIDATOR_H
+#endif // SUPCOIN_QT_SUPCOINADDRESSVALIDATOR_H

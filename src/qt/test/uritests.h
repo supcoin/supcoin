@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_QT_TEST_URITESTS_H
-#define BITCOIN_QT_TEST_URITESTS_H
+#ifndef SUPCOIN_QT_TEST_URITESTS_H
+#define SUPCOIN_QT_TEST_URITESTS_H
 
 #include <QObject>
 #include <QTest>
@@ -16,4 +16,4 @@ private slots:
     void uriTests();
 };
 
-#endif // BITCOIN_QT_TEST_URITESTS_H
+#endif // SUPCOIN_QT_TEST_URITESTS_H

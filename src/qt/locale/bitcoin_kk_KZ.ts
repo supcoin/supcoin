@@ -89,7 +89,7 @@
     </message>
     </context>
 <context>
-    <name>BitcoinGUI</name>
+    <name>SupcoinGUI</name>
     <message>
         <source>&amp;Transactions</source>
         <translation>&amp;Транзакциялар</translation>
@@ -111,7 +111,7 @@
         <translation>Құпия сөзді өзгерту</translation>
     </message>
     <message>
-        <source>Bitcoin</source>
+        <source>Supcoin</source>
         <translation>Биткоин</translation>
     </message>
     <message>
@@ -421,7 +421,7 @@
     </message>
     </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>supcoin-core</name>
     <message>
         <source>Information</source>
         <translation>Информация</translation>
