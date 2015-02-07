@@ -103,7 +103,7 @@ void  CChainParams::MineNewGenesisBlock()
         thash=genesis.GetHash();
         if (this->CheckProofOfWork(thash, genesis.nBits))
             break;
-        if ((genesis.nNonce & 0xFFFF) == 0)
+        if ((genesis.nNonce & 0xFF) == 0)
         {
             printf("nonce %08X: hash = %s\n",genesis.nNonce, thash.ToString().c_str());
         }
@@ -156,13 +156,13 @@ public:
         pchMessageStart[3] = 0xd9;
         vAlertPubKey = ParseHex("04fc9702847840aaf195de8442ebecedf5b095cdbb9bc716bda9110971b28a49e0ead8564ff0db22209e0374782c093bb899692d524e9d6a6956e7c5ecbcd68284");
         nDefaultPort = 8333;
-        bnProofOfWorkLimit = ~uint256(0) >> 16;
+        bnProofOfWorkLimit = ~uint256(0) >> 12; //about 1.2 minutes for a single-core moderate processor PC
         nSubsidyHalvingInterval = 210000;
         nMinerThreads = 0;
         nTargetTimespan = 14 * 24 * 60 * 60; // two weeks
         nTargetSpacing = 1 * 60;
 
-        const char* pszTimestamp = "or on brink of second bailout for banks";
+        const char* pszTimestamp = "or on";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
@@ -175,21 +175,13 @@ public:
         genesis.nVersion = 1;
         genesis.nBits    = bnProofOfWorkLimit.GetCompact();
 
-        genesis.nTime = 1421045846;
-        genesis.nNonce = 198302;
-        assert(genesis.hashMerkleRoot == uint256("0x7cab3d03f74d2fdd1c457135b46d8e6904cb353bc4f9595a34e9b8eb8a1c771e"));
-        //genesis hash: 0x00009add4210a4be97ebf6f1277bf9b43fe91dbd34b31cc87b34ca26c78245aa
 
-        //MineNewGenesisBlock();
+        MineNewGenesisBlock();
         hashGenesisBlock = genesis.GetHash();
 
         assert(hashGenesisBlock == MAINNET_GENESIS);
 
-        vSeeds.push_back(CDNSSeedData("bitcoin.sipa.be", "seed.bitcoin.sipa.be"));
-        vSeeds.push_back(CDNSSeedData("bluematt.me", "dnsseed.bluematt.me"));
-        vSeeds.push_back(CDNSSeedData("dashjr.org", "dnsseed.bitcoin.dashjr.org"));
-        vSeeds.push_back(CDNSSeedData("bitcoinstats.com", "seed.bitcoinstats.com"));
-        vSeeds.push_back(CDNSSeedData("xf2.org", "bitseed.xf2.org"));
+        vSeeds.push_back(CDNSSeedData("earlz.net", "earlz.net"));
 
         base58Prefixes[PUBKEY_ADDRESS] = list_of(0);
         base58Prefixes[SCRIPT_ADDRESS] = list_of(5);
@@ -234,21 +226,14 @@ public:
         nTargetTimespan = 14 * 24 * 60 * 60; //! two weeks
         nTargetSpacing = 1 * 60;
 
-        genesis.nTime = 1421046107;
-        genesis.nNonce = 130053;
-        assert(genesis.hashMerkleRoot == uint256("0x7cab3d03f74d2fdd1c457135b46d8e6904cb353bc4f9595a34e9b8eb8a1c771e"));
-        //genesis hash: 0x000082c0b945dabb8ee379b40d6ba51fb7ed7200a1128a81227d530cafff1a8c
 
-        //MineNewGenesisBlock();
+        MineNewGenesisBlock();
         hashGenesisBlock = genesis.GetHash();
         assert(hashGenesisBlock == TESTNET_GENESIS);
 
         vFixedSeeds.clear();
         vSeeds.clear();
-        vSeeds.push_back(CDNSSeedData("alexykot.me", "testnet-seed.alexykot.me"));
-        vSeeds.push_back(CDNSSeedData("bitcoin.petertodd.org", "testnet-seed.bitcoin.petertodd.org"));
-        vSeeds.push_back(CDNSSeedData("bluematt.me", "testnet-seed.bluematt.me"));
-        vSeeds.push_back(CDNSSeedData("bitcoin.schildbach.de", "testnet-seed.bitcoin.schildbach.de"));
+        vSeeds.push_back(CDNSSeedData("earlz.net", "earlz.net"));
 
         base58Prefixes[PUBKEY_ADDRESS] = list_of(111);
         base58Prefixes[SCRIPT_ADDRESS] = list_of(196);
@@ -292,12 +277,8 @@ public:
         bnProofOfWorkLimit = ~uint256(0) >> 1;
         genesis.nBits    = bnProofOfWorkLimit.GetCompact();
 
-        genesis.nTime = 1421046242;
-        genesis.nNonce = 0;
-        assert(genesis.hashMerkleRoot == uint256("0x7cab3d03f74d2fdd1c457135b46d8e6904cb353bc4f9595a34e9b8eb8a1c771e"));
-        //genesis hash: 0x02aeaf70c93a635897ad9e3233f7f3a8c74924155a10cde76133f50ac1c95cb2
 
-        //MineNewGenesisBlock();
+        MineNewGenesisBlock();
         hashGenesisBlock = genesis.GetHash();
         nDefaultPort = 18444;
 

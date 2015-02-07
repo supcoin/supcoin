@@ -11,7 +11,7 @@
 #include "crypto/common.h"
 
 
-static const int HASH_MEMORY=512*1024;
+static const int HASH_MEMORY=128*1024;
 
 
 #define ROTL(a, b) (((a) << (b)) | ((a) >> (32 - (b))))
