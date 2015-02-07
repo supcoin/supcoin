@@ -156,7 +156,7 @@ public:
         pchMessageStart[2] = 0xb1;
         pchMessageStart[3] = 0xd0;
         vAlertPubKey = ParseHex("04fc9702847840aaf195de8442ebecedf5b095cdbb9bc716bda9110971b28a49e0ead8564ff0db22209e0374782c093bb899692d524e9d6a6956e7c5ecbcd68284");
-        nDefaultPort = 8333;
+        nDefaultPort = 4411;
         bnProofOfWorkLimit = ~uint256(0) >> 12; //about 1.2 minutes for a single-core moderate processor PC
         nSubsidyHalvingInterval = 210000;
         nMinerThreads = 0;
@@ -170,6 +170,7 @@ public:
         txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
         txNew.vout[0].nValue = 1 * COIN;
         txNew.vout[0].scriptPubKey = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
+
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
@@ -226,7 +227,7 @@ public:
         pchMessageStart[2] = 0x19;
         pchMessageStart[3] = 0x02;
         vAlertPubKey = ParseHex("04302390343f91cc401d56d68b123028bf52e5fca1939df127f63c6467cdf9c8e2c14b61104cf817d0b780da337893ecc4aaff1309e536162dabbdb45200ca2b0a");
-        nDefaultPort = 18333;
+        nDefaultPort = 14411;
         nMinerThreads = 0;
         nTargetTimespan = 5 * 60;
         nTargetSpacing = 5 * 60;
