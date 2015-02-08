@@ -158,7 +158,7 @@ public:
         vAlertPubKey = ParseHex("04fc9702847840aaf195de8442ebecedf5b095cdbb9bc716bda9110971b28a49e0ead8564ff0db22209e0374782c093bb899692d524e9d6a6956e7c5ecbcd68284");
         nDefaultPort = 4411;
         bnProofOfWorkLimit = ~uint256(0) >> 12; //about 1.2 minutes for a single-core moderate processor PC
-        nSubsidyHalvingInterval = 210000;
+        nSubsidyHalvingInterval = 288 * 100; //288 blocks per day
         nMinerThreads = 0;
         nTargetTimespan = 5 * 60; // these have to be the same for digishield
         nTargetSpacing = 5 * 60;
