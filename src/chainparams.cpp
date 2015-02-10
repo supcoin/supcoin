@@ -187,10 +187,11 @@ assert(genesis.hashMerkleRoot == uint256("0x33b388e1b54a4f177187adcb4b8a3cb2913e
 
         assert(hashGenesisBlock == MAINNET_GENESIS);
 
-        vSeeds.push_back(CDNSSeedData("earlz.net", "earlz.net"));
+//        vSeeds.push_back(CDNSSeedData("earlz.net", "earlz.net"));
+        vSeeds.push_back(CDNSSeedData("testnetsup.earlz.net", "testnetsup.earlz.net"));
 
-        base58Prefixes[PUBKEY_ADDRESS] = list_of(0);
-        base58Prefixes[SCRIPT_ADDRESS] = list_of(5);
+        base58Prefixes[PUBKEY_ADDRESS] = list_of(48);
+        base58Prefixes[SCRIPT_ADDRESS] = list_of(43);
         base58Prefixes[SECRET_KEY] =     list_of(128);
         base58Prefixes[EXT_PUBLIC_KEY] = list_of(0x04)(0x88)(0xB2)(0x1E);
         base58Prefixes[EXT_SECRET_KEY] = list_of(0x04)(0x88)(0xAD)(0xE4);
