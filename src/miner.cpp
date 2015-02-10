@@ -373,31 +373,33 @@ int64_t nHPSTimerStart = 0;
 // nonce is 0xffff0000 or above, the block is rebuilt and nNonce starts over at
 // zero.
 //
-bool static ScanHash(const CBlockHeader *pblock, uint32_t& nNonce, uint256 *phash)
+bool static ScanHash(CBlockHeader *pblock, uint32_t& nNonce, uint256 *phash)
 {
     // Write the first 76 bytes of the block header to a double-SHA256 state.
-    CHash256 hasher;
+    //CHash256 hasher;
     CDataStream ss(SER_NETWORK, PROTOCOL_VERSION);
     ss << *pblock;
+    //printf("size: %i\n", ss.size());
     assert(ss.size() == 80);
-    hasher.Write((unsigned char*)&ss[0], 76);
+    //hasher.Write((unsigned char*)&ss[0], BLOCK_HEADER_SIZE-4); //todo fix to use extranonce value
 
     while (true) {
         nNonce++;
-
+        pblock->nNonce=nNonce;
         // Write the last 4 bytes of the block header (the nonce) to a copy of
         // the double-SHA256 state, and compute the result.
-        CHash256(hasher).Write((unsigned char*)&nNonce, 4).Finalize((unsigned char*)phash);
+        *phash=pblock->GetHash();
+        //CHash256(hasher).Write((unsigned char*)&nNonce, 4).Finalize((unsigned char*)phash);
 
         // Return the nonce if the hash has at least some zero bits,
         // caller will check if it has enough to reach the target
-        if (((uint16_t*)phash)[15] == 0)
+        if (((uint8_t*)phash)[31] == 0)
             return true;
 
         // If nothing found after trying for a while, return -1
-        if ((nNonce & 0xffff) == 0)
-            return false;
         if ((nNonce & 0xfff) == 0)
+            return false;
+        if ((nNonce & 0xff) == 0)
             boost::this_thread::interruption_point();
     }
 }
