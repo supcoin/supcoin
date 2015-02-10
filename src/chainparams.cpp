@@ -151,11 +151,11 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
-        pchMessageStart[0] = 0xfa;
+        pchMessageStart[0] = 0xfc;
         pchMessageStart[1] = 0xbf;
         pchMessageStart[2] = 0xb1;
         pchMessageStart[3] = 0xd0;
-        vAlertPubKey = ParseHex("04fc9702847840aaf195de8442ebecedf5b095cdbb9bc716bda9110971b28a49e0ead8564ff0db22209e0374782c093bb899692d524e9d6a6956e7c5ecbcd68284");
+        vAlertPubKey = ParseHex("0496992EAFAB7117FAE9C8AA7B9E46333272260EA3F7DCDE170D3DFE52B2426E44A128B802EE91467547E5725616D20313EEE974E994662B0E7DAA7D3C28862C3D");
         nDefaultPort = 4411;
         bnProofOfWorkLimit = ~uint256(0) >> 12; //about 1.2 minutes for a single-core moderate processor PC
         nSubsidyHalvingInterval = 288 * 100; //288 blocks per day
@@ -227,7 +227,8 @@ public:
         pchMessageStart[1] = 0x12;
         pchMessageStart[2] = 0x19;
         pchMessageStart[3] = 0x02;
-        vAlertPubKey = ParseHex("04302390343f91cc401d56d68b123028bf52e5fca1939df127f63c6467cdf9c8e2c14b61104cf817d0b780da337893ecc4aaff1309e536162dabbdb45200ca2b0a");
+        vAlertPubKey = ParseHex("04B1FBD698F99145DD8963F6625A8968B80F237E82E0F895B56CD271ACB1967B47A49026DEDB0C1101B946B50F9F74EDDB7B2D1ECDCA840F06C0775505ECA4E5D8");
+        //testnet private key: 02B1FBD698F99145DD8963F6625A8968B80F237E82E0F895B56CD271ACB1967B47
         nDefaultPort = 14411;
         nMinerThreads = 0;
         nTargetTimespan = 5 * 60;
