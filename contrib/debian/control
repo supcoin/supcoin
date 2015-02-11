@@ -23,7 +23,7 @@ Build-Depends: debhelper,
  libprotobuf-dev, protobuf-compiler
 Standards-Version: 3.9.2
 Homepage: http://www.supcoin.org/
-Vcs-Git: git://github.com/supcoin/supcoin.git
+Vcs-Git: git://github.com/supcoin/supcoin-TEST-ONLY.git
 Vcs-Browser: http://github.com/supcoin/supcoin
 
 Package: supcoind
