@@ -9,7 +9,7 @@ packages:
 - "g++-multilib"
 - "git-core"
 - "pkg-config"
-- "autoconf2.13"
+- "autoconf2.69"
 - "libtool"
 - "automake"
 - "faketime"
