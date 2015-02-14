@@ -92,7 +92,6 @@ uint256 CBlockHeader::GetHash() const
     memcpy(&data[36], hashMerkleRoot.begin(), hashMerkleRoot.size());
     WriteLE32(&data[68], nTime);
     WriteLE32(&data[72], nBits);
-    //WriteLE32(&data[76], nExtraNonce);
     WriteLE32(&data[76], nNonce);
 
     //could probably cache this so that we can skip hash generation when the first sha256 hash matches
@@ -100,14 +99,12 @@ uint256 CBlockHeader::GetHash() const
     //allocating on heap adds hardly any overhead on Linux
     int size=HASH_MEMORY;
     CSHA256 sha;
-    //uint8_t buffer[HASH_MEMORY];
     memset(hashbuffer, 0, 64); 
-    //memcpy(hashbuffer, data.begin(), 32); 
     sha.Reset().Write(data, BLOCK_HEADER_SIZE).Finalize(&hashbuffer[0]);
     for (int i = 64; i < size-32; i+=32)
     {
-        uint64_t randmax = (uint64_t)i; //we could use size here, but then it's probable to use 0 as the value in most cases
-        uint8_t joint[64];
+        int randmax = i; //we could use size here, but then it's probable to use 0 as the value in most cases
+        uint16_t joint[32];
         uint32_t randbuffer[16];
         assert(i-32>0);
         assert(i<size);
@@ -126,18 +123,18 @@ uint256 CBlockHeader::GetHash() const
         xor_salsa8(randbuffer, randseed);
 
         memcpy(joint, &hashbuffer[i-32], 32);
-        //uint32_t seed=*((uint32_t*)&joint[0]); //use the last hash value as the seed
-        for (int j = 32; j < 64; j++)
+        //use the last hash value as the seed
+        for (int j = 32; j < 64; j+=2)
         {
             assert((j - 32) / 2 < 16);
             //every other time, change to next random index
-            uint32_t rand = randbuffer[(j - 32)/2] % randmax;
+            int rand = randbuffer[(j - 32)/2] % randmax;
             assert(j>0 && j<64);
             assert(rand<size);
-            joint[j] = hashbuffer[rand];
+            *((uint16_t*)&joint[j/2]) = *((uint16_t*)&hashbuffer[rand]);
         }
         assert(i>=0 && i+32<size);
-        sha.Reset().Write(joint, 64).Finalize(&hashbuffer[i]);
+        sha.Reset().Write((uint8_t*) joint, 64).Finalize(&hashbuffer[i]);
 
         //setup randbuffer to be an array of random indexes
         memcpy(randseed, &hashbuffer[i-32], 64); //use last hash value and previous hash value(post-mixing)
@@ -150,26 +147,18 @@ uint256 CBlockHeader::GetHash() const
         }
         xor_salsa8(randbuffer, randseed);
 
-        //seed=*((uint32_t*)&hashbuffer[i]); //use the last hash value as the seed
-        for (int j = 0; j < 32; j++)
+        //use the last hash value as the seed
+        for (int j = 0; j < 32; j+=2)
         {
             assert(j/2 < 16);
-            uint32_t rand = randbuffer[j/2] % randmax;
+            int rand = randbuffer[j/2] % randmax;
             assert(rand < size);
             assert(j+i >= 0 && j+i < size);
-            hashbuffer[rand] = hashbuffer[j+i];
+            *((uint16_t*)&hashbuffer[rand]) = *((uint16_t*)&hashbuffer[j+i]);
         }
-        //memcpy(&buffer[i+32], tmp.begin(), 32);
-    }
-    //note: off-by-one error is likely here...
-    for (int i = size-64-1; i > 64; i -= 64)
-    {
-      assert(i-64 >= 0);
-      assert(i+64<size);
-        sha.Reset().Write(&hashbuffer[i], 64).Finalize(&hashbuffer[i-64]);
     }
     uint256 output;
-    memcpy((unsigned char*)&output, &hashbuffer[0], 32);
+    memcpy((unsigned char*)&output, &hashbuffer[size-32], 32);
     delete[] hashbuffer;
     return output;
 }
