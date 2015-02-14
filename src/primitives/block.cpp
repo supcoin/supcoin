@@ -99,12 +99,13 @@ uint256 CBlockHeader::GetHash() const
     //allocating on heap adds hardly any overhead on Linux
     int size=HASH_MEMORY;
     CSHA256 sha;
-    memset(hashbuffer, 0, 64); 
+    memset(hashbuffer, 0, 64); //HASH_MEMORY); 
     sha.Reset().Write(data, BLOCK_HEADER_SIZE).Finalize(&hashbuffer[0]);
     for (int i = 64; i < size-32; i+=32)
     {
-        int randmax = i; //we could use size here, but then it's probable to use 0 as the value in most cases
-        uint16_t joint[32];
+        //i-4 because we use integers for all references against this, and we don't want to go 3 bytes over the defined area
+        int randmax = i-4; //we could use size here, but then it's probable to use 0 as the value in most cases
+        uint32_t joint[16];
         uint32_t randbuffer[16];
         assert(i-32>0);
         assert(i<size);
@@ -124,14 +125,15 @@ uint256 CBlockHeader::GetHash() const
 
         memcpy(joint, &hashbuffer[i-32], 32);
         //use the last hash value as the seed
-        for (int j = 32; j < 64; j+=2)
+        for (int j = 32; j < 64; j+=4)
         {
             assert((j - 32) / 2 < 16);
             //every other time, change to next random index
-            int rand = randbuffer[(j - 32)/2] % randmax;
+            uint32_t rand = randbuffer[(j - 32)/4] % (randmax-32); //randmax - 32 as otherwise we go beyond memory that's already been written to
             assert(j>0 && j<64);
             assert(rand<size);
-            *((uint16_t*)&joint[j/2]) = *((uint16_t*)&hashbuffer[rand]);
+            assert(j/2 < 64);
+            joint[j/4] = *((uint32_t*)&hashbuffer[rand]);
         }
         assert(i>=0 && i+32<size);
         sha.Reset().Write((uint8_t*) joint, 64).Finalize(&hashbuffer[i]);
@@ -143,18 +145,19 @@ uint256 CBlockHeader::GetHash() const
             memcpy(randbuffer, &hashbuffer[i-128], 64);
         }else
         {
-            memset(&randbuffer, 0, 64);
+            memset(randbuffer, 0, 64);
         }
         xor_salsa8(randbuffer, randseed);
 
         //use the last hash value as the seed
         for (int j = 0; j < 32; j+=2)
         {
-            assert(j/2 < 16);
-            int rand = randbuffer[j/2] % randmax;
+            assert(j/4 < 16);
+            uint32_t rand = randbuffer[j/2] % randmax;
             assert(rand < size);
-            assert(j+i >= 0 && j+i < size);
-            *((uint16_t*)&hashbuffer[rand]) = *((uint16_t*)&hashbuffer[j+i]);
+            assert((j/4)+i >= 0 && (j/4)+i < size);
+            assert(j + i -4 < i + 32); //assure we dont' access beyond the hash
+            *((uint32_t*)&hashbuffer[rand]) = *((uint32_t*)&hashbuffer[j + i - 4]);
         }
     }
     //note: off-by-one error is likely here...     
