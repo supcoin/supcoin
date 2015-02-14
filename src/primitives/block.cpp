@@ -158,7 +158,7 @@ uint256 CBlockHeader::GetHash() const
         }
     }
     //note: off-by-one error is likely here...     
-    for (int i = size-64-1; i > 64; i -= 64)       
+    for (int i = size-64-1; i >= 64; i -= 64)       
     {      
       assert(i-64 >= 0);       
       assert(i+64<size);       
