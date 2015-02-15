@@ -300,7 +300,7 @@ assert(genesis.hashMerkleRoot == uint256("0x33b388e1b54a4f177187adcb4b8a3cb2913e
 //genesis hash: 0x4b13bb28a9660c2f1d3b4fa9075a950c26ac5df8305b4195097631ebc0cb2fc3
 
 
-        MineNewGenesisBlock();
+        //MineNewGenesisBlock();
         hashGenesisBlock = genesis.GetHash();
         nDefaultPort = 18444;
 
