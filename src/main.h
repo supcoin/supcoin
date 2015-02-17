@@ -49,6 +49,8 @@ class CValidationState;
 struct CBlockTemplate;
 struct CNodeStateStats;
 
+/** How far in the future blocks are allowed to be minted **/
+static const unsigned int FUTURE_TIMESTAMP_ALLOWANCE = 30*60; //30 minutes
 /** If a fork is found that is greater than this amount of blocks ahead(by height or difficultY?), then enter safe-mode **/
 static const unsigned int FORK_WARNING_BLOCKS=12;
 /** If safe-mode is entered for a large fork, after this many blocks of difference, the original fork will be dropped **/

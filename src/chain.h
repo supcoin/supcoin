@@ -15,6 +15,8 @@
 
 #include <boost/foreach.hpp>
 
+static const int PAST_MEDIAN_TIME_SPAN=22;
+
 struct CDiskBlockPos
 {
     int nFile;
@@ -220,7 +222,7 @@ public:
         return (int64_t)nTime;
     }
 
-    enum { nMedianTimeSpan=11 };
+    enum { nMedianTimeSpan=PAST_MEDIAN_TIME_SPAN };
 
     int64_t GetMedianTimePast() const
     {
