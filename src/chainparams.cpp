@@ -170,7 +170,7 @@ public:
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
         txNew.vout[0].nValue = 1 * COIN;
-        txNew.vout[0].scriptPubKey = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
+        txNew.vout[0].scriptPubKey = CScript() << ParseHex("0") << OP_CHECKSIG;
 
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
@@ -190,7 +190,10 @@ assert(genesis.hashMerkleRoot == uint256("0x33b388e1b54a4f177187adcb4b8a3cb2913e
         assert(hashGenesisBlock == MAINNET_GENESIS);
 
 //        vSeeds.push_back(CDNSSeedData("earlz.net", "earlz.net"));
-        vSeeds.push_back(CDNSSeedData("testnetsup.earlz.net", "testnetsup.earlz.net"));
+        vSeeds.push_back(CDNSSeedData("sup1.earlz.net", "sup1.earlz.net"));
+        vSeeds.push_back(CDNSSeedData("sup2.earlz.net", "sup2.earlz.net"));
+        vSeeds.push_back(CDNSSeedData("sup1.supcoin.com", "sup1.supcoin.com"));
+        vSeeds.push_back(CDNSSeedData("sup2.supcoin.com", "sup2.supcoin.com"));
 
         base58Prefixes[PUBKEY_ADDRESS] = list_of(48);
         base58Prefixes[SCRIPT_ADDRESS] = list_of(43);
@@ -249,7 +252,7 @@ assert(genesis.hashMerkleRoot == uint256("0x33b388e1b54a4f177187adcb4b8a3cb2913e
 
         vFixedSeeds.clear();
         vSeeds.clear();
-        vSeeds.push_back(CDNSSeedData("earlz.net", "earlz.net"));
+        vSeeds.push_back(CDNSSeedData("testnetsup.earlz.net", "testnetsup.earlz.net"));
 
         base58Prefixes[PUBKEY_ADDRESS] = list_of(111);
         base58Prefixes[SCRIPT_ADDRESS] = list_of(196);
