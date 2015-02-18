@@ -20,7 +20,7 @@ packages:
 - "zip"
 reference_datetime: "2013-06-01 00:00:00"
 remotes:
-- "url": "https://bitbucket.org/earlz/leftsharkcoin"
+- "url": "https://github.com/supcoin/supcoin"
   "dir": "supcoin"
 files: []
 script: |
