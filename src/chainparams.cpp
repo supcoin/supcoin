@@ -25,9 +25,9 @@ struct SeedSpec6 {
 
 #include "chainparamsseeds.h"
 
-static const uint256 MAINNET_GENESIS("0x0008c94cfb59ae4eb93ec811e11b9d75c1706098774cdd0d9d7b26a2bee3c0d6");
-static const uint256 TESTNET_GENESIS("0x000e7a3877ab3b90f0c7a68eaa8129a80cec14e5bc2f958d68cac2e008eadbd5");
-static const uint256 REGNET_GENESIS("0x4b13bb28a9660c2f1d3b4fa9075a950c26ac5df8305b4195097631ebc0cb2fc3");
+static const uint256 MAINNET_GENESIS("");
+static const uint256 TESTNET_GENESIS("");
+static const uint256 REGNET_GENESIS("");
 
 
 /**
@@ -164,7 +164,7 @@ public:
         nTargetTimespan = 5 * 60; // these have to be the same for digishield
         nTargetSpacing = 5 * 60;
 
-        const char* pszTimestamp = "or on";
+        const char* pszTimestamp = "BTC block #343973 00000000000000000fb3c8734d61ffc9cf92908a81386ecc7b35882e05a84d90";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
@@ -177,14 +177,9 @@ public:
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
         genesis.nBits    = bnProofOfWorkLimit.GetCompact();
-genesis.nTime = 1423954375;
-genesis.nNonce = 1795;
-assert(genesis.hashMerkleRoot == uint256("0x33b388e1b54a4f177187adcb4b8a3cb2913e2615a6110462d17cfc7eb92bceeb"));
-//genesis hash: 0x0008c94cfb59ae4eb93ec811e11b9d75c1706098774cdd0d9d7b26a2bee3c0d6
-//genesis hash: 0x0008c94cfb59ae4eb93ec811e11b9d75c1706098774cdd0d9d7b26a2bee3c0d6
 
 
-        //MineNewGenesisBlock();
+        MineNewGenesisBlock();
         hashGenesisBlock = genesis.GetHash();
 
         assert(hashGenesisBlock == MAINNET_GENESIS);
