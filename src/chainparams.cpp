@@ -194,6 +194,7 @@ assert(genesis.hashMerkleRoot == uint256("0x62ba69e49dbc3a1d5ef1deabefe602c25d5d
 //        vSeeds.push_back(CDNSSeedData("earlz.net", "earlz.net"));
         vSeeds.push_back(CDNSSeedData("sup1.earlz.net", "sup1.earlz.net"));
         vSeeds.push_back(CDNSSeedData("sup2.earlz.net", "sup2.earlz.net"));
+        vSeeds.push_back(CDNSSeedData("sup3.earlz.net", "sup3.earlz.net"));
         vSeeds.push_back(CDNSSeedData("sup1.supcoin.com", "sup1.supcoin.com"));
         vSeeds.push_back(CDNSSeedData("sup2.supcoin.com", "sup2.supcoin.com"));
 
