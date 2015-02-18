@@ -25,9 +25,9 @@ struct SeedSpec6 {
 
 #include "chainparamsseeds.h"
 
-static const uint256 MAINNET_GENESIS("");
-static const uint256 TESTNET_GENESIS("");
-static const uint256 REGNET_GENESIS("");
+static const uint256 MAINNET_GENESIS("0x000e1594b025054f2cdba70fba0e74de5049d62ade0e0a65a2f990b6c8f19fd0");
+static const uint256 TESTNET_GENESIS("0x000e2950b882a5785c7d962ccb4e507b02633ec29687d26687ba8b4cb810e39c");
+static const uint256 REGNET_GENESIS("0x6fb42b979bd4f9efc8f736092e7c75dca739c3aeb12893db9f0bda9332cce317");
 
 
 /**
@@ -177,9 +177,14 @@ public:
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
         genesis.nBits    = bnProofOfWorkLimit.GetCompact();
+genesis.nTime = 1424229244;
+genesis.nNonce = 369;
+assert(genesis.hashMerkleRoot == uint256("0x62ba69e49dbc3a1d5ef1deabefe602c25d5dc3ca235508412b6453eb726d163b"));
+//genesis hash: 0x000e1594b025054f2cdba70fba0e74de5049d62ade0e0a65a2f990b6c8f19fd0
+//genesis hash: 0x000e1594b025054f2cdba70fba0e74de5049d62ade0e0a65a2f990b6c8f19fd0
 
 
-        MineNewGenesisBlock();
+        //MineNewGenesisBlock();
         hashGenesisBlock = genesis.GetHash();
 
         assert(hashGenesisBlock == MAINNET_GENESIS);
@@ -233,13 +238,12 @@ public:
         nMinerThreads = 0;
         nTargetTimespan = 5 * 60;
         nTargetSpacing = 5 * 60;
-genesis.nTime = 1423954431;
-genesis.nNonce = 4019;
-assert(genesis.hashMerkleRoot == uint256("0x33b388e1b54a4f177187adcb4b8a3cb2913e2615a6110462d17cfc7eb92bceeb"));
-//genesis hash: 0x000e7a3877ab3b90f0c7a68eaa8129a80cec14e5bc2f958d68cac2e008eadbd5
-//genesis hash: 0x000e7a3877ab3b90f0c7a68eaa8129a80cec14e5bc2f958d68cac2e008eadbd5
 
-
+genesis.nTime = 1424229305;
+genesis.nNonce = 569;
+assert(genesis.hashMerkleRoot == uint256("0x62ba69e49dbc3a1d5ef1deabefe602c25d5dc3ca235508412b6453eb726d163b"));
+//genesis hash: 0x000e2950b882a5785c7d962ccb4e507b02633ec29687d26687ba8b4cb810e39c
+//genesis hash: 0x000e2950b882a5785c7d962ccb4e507b02633ec29687d26687ba8b4cb810e39c
 
         //MineNewGenesisBlock();
         hashGenesisBlock = genesis.GetHash();
@@ -291,11 +295,12 @@ public:
         bnProofOfWorkLimit = ~uint256(0) >> 1;
         genesis.nBits    = bnProofOfWorkLimit.GetCompact();
 
-genesis.nTime = 1423954497;
-genesis.nNonce = 1;
-assert(genesis.hashMerkleRoot == uint256("0x33b388e1b54a4f177187adcb4b8a3cb2913e2615a6110462d17cfc7eb92bceeb"));
-//genesis hash: 0x4b13bb28a9660c2f1d3b4fa9075a950c26ac5df8305b4195097631ebc0cb2fc3
-//genesis hash: 0x4b13bb28a9660c2f1d3b4fa9075a950c26ac5df8305b4195097631ebc0cb2fc3
+genesis.nTime = 1424229368;
+genesis.nNonce = 0;
+assert(genesis.hashMerkleRoot == uint256("0x62ba69e49dbc3a1d5ef1deabefe602c25d5dc3ca235508412b6453eb726d163b"));
+//genesis hash: 0x6fb42b979bd4f9efc8f736092e7c75dca739c3aeb12893db9f0bda9332cce317
+//genesis hash: 0x6fb42b979bd4f9efc8f736092e7c75dca739c3aeb12893db9f0bda9332cce317
+
 
 
         //MineNewGenesisBlock();
