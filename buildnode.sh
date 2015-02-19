@@ -3,6 +3,7 @@
 ./configure --with-incompatible-bdb
 make
 make check
+mkdir ~/.supcoin
 echo "rpcuser=foo" > ~/.supcoin/supcoin.conf
 echo "rpcpassword=bar" >> ~/.supcoin/supcoin.conf
 cd src
