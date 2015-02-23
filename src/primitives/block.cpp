@@ -161,12 +161,14 @@ uint256 CBlockHeader::GetHash() const
         }
     }
     //note: off-by-one error is likely here...     
+    /** bugged.. actually a no-op
     for (int i = size-64-1; i >= 64; i -= 64)       
     {      
       assert(i-64 >= 0);       
       assert(i+64<size);       
         sha.Reset().Write(&hashbuffer[i], 64).Finalize(&hashbuffer[i-64]);     
      }
+     */
     uint256 output;
     memcpy((unsigned char*)&output, &hashbuffer[0], 32);
     delete[] hashbuffer;
