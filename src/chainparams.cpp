@@ -52,6 +52,12 @@ static void convertSeed6(std::vector<CAddress> &vSeedsOut, const SeedSpec6 *data
     }
 }
 
+/*2015-02-25 23:42:36 UpdateTip: new best=000000003229380dba49338272c6f313e80e36855f273213
+6b3134cafc34555d  height=1684  log2_work=41.537901  tx=4685  date=2015-02-25 23:42:02 pr
+ogress=1.000000  cache=40
+*/
+
+
 /**
  * What makes a good checkpoint block?
  * + Is surrounded by blocks with reasonable timestamps
@@ -61,16 +67,17 @@ static void convertSeed6(std::vector<CAddress> &vSeedsOut, const SeedSpec6 *data
  */
 static Checkpoints::MapCheckpoints mapCheckpoints =
         boost::assign::map_list_of
-        ( 0, MAINNET_GENESIS)
-        ( 1, uint256("0008417223dc102bfc3916c18cbc31df46f24ca42126d457d903efbb47a2538b")) //premine
-        (16, uint256("0001df5d43ac5430e05addc67197765eb5672a24e8ed3936f1928035c75010c3")) //fair launch
+        ( 0   , MAINNET_GENESIS)
+        ( 1   , uint256("0008417223dc102bfc3916c18cbc31df46f24ca42126d457d903efbb47a2538b")) //premine
+        (16   , uint256("0001df5d43ac5430e05addc67197765eb5672a24e8ed3936f1928035c75010c3")) //fair launch
+        (1684 , uint256("000000003229380dba49338272c6f313e80e36855f2732136b3134cafc34555d"))
         ;
 static const Checkpoints::CCheckpointData data = { //just ignore all this stuff until we put in a real checkpoint
         &mapCheckpoints,
-        0, // * UNIX timestamp of last checkpoint block
-        0,   // * total number of transactions between genesis and last checkpoint
+        1424907722, // * UNIX timestamp of last checkpoint block
+        4685,   // * total number of transactions between genesis and last checkpoint
                     //   (the tx=... number in the SetBestChain debug.log lines)
-        0     // * estimated number of transactions per day after checkpoint
+        250     // * estimated number of transactions per day after checkpoint
     };
 
 static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
